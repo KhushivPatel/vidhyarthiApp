@@ -1,9 +1,10 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, useColorScheme } from 'react-native';
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 
 const EducationScreen = () => {
       const navigation = useNavigation();
+       const isDarkMode = useColorScheme() === 'dark';
 
      const goToSsc = () => {
     navigation.navigate('SscEducation');
@@ -15,65 +16,65 @@ const EducationScreen = () => {
     navigation.navigate('UgEducation');
   };
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.headerText}>Educational List</Text>
+    <View style={isDarkMode ? styles.containerDark :  styles.container}>
+      <View style={isDarkMode ? styles.headerDark :  styles.header}>
+        <Text style={isDarkMode ? styles.headerTextDark :  styles.headerText}>Educational List</Text>
       </View>
 
       {/* Main View Container with Border Radius */}
-      <View style={styles.mainContainer}>
+      <View style={isDarkMode ? styles.mainContainerDark :  styles.mainContainer}>
         {/* First View with Left Texts and Right Arrow Image */}
-        <View style={styles.rowContainer}>
-          <View style={styles.leftTextContainer}>
-            <Text style={styles.mainText}>Degree</Text>
-            <Text style={styles.subText}>SSC / 10th</Text>
+        <View style={isDarkMode ? styles.rowContainerDark :  styles.rowContainer}>
+          <View style={isDarkMode ? styles.leftTextContainerDark :  styles.leftTextContainer}>
+            <Text style={isDarkMode ? styles.mainTextDark :  styles.mainText}>Degree</Text>
+            <Text style={isDarkMode ? styles.subTextDark :  styles.subText}>SSC / 10th</Text>
           </View>
-          <TouchableOpacity style={styles.arrowContainer} onPress={goToSsc}>
-            <Image source={require('../../assets/icons/arrow.png')} style={styles.arrowImage} />
+          <TouchableOpacity style={isDarkMode ? styles.arrowContainerDark :  styles.arrowContainer} onPress={goToSsc}>
+            <Image source={require('../../assets/icons/arrow.png')} style={isDarkMode ? styles.arrowImageDark :  styles.arrowImage} />
           </TouchableOpacity>
         </View>
 
         {/* Second View with only Text */}
-        <View style={styles.textContainer}>
-          <Text style={styles.additionalText}>
+        <View style={isDarkMode ? styles.textContainerDark :  styles.textContainer}>
+          <Text style={isDarkMode ? styles.additionalTextDark :  styles.additionalText}>
           Gujarat secondary and Higher Secondary Education Board
           </Text>
         </View>
       </View>
-      <View style={styles.mainContainer}>
+      <View style={isDarkMode ? styles.mainContainerDark :  styles.mainContainer}>
         {/* First View with Left Texts and Right Arrow Image */}
-        <View style={styles.rowContainer}>
-          <View style={styles.leftTextContainer}>
-            <Text style={styles.mainText}>Degree</Text>
-            <Text style={styles.subText}>HSC / 12th / Intermediate</Text>
+        <View style={isDarkMode ? styles.rowContainerDark :  styles.rowContainer}>
+          <View style={isDarkMode ? styles.leftTextContainerDark :  styles.leftTextContainer}>
+            <Text style={isDarkMode ? styles.mainTextDark :  styles.mainText}>Degree</Text>
+            <Text style={isDarkMode ? styles.subTextDark :  styles.subText}>HSC / 12th / Intermediate</Text>
           </View>
-          <TouchableOpacity style={styles.arrowContainer} onPress={goToHsc}>
-            <Image source={require('../../assets/icons/arrow.png')} style={styles.arrowImage} />
+          <TouchableOpacity style={isDarkMode ? styles.arrowContainerDark :  styles.arrowContainer} onPress={goToHsc}>
+            <Image source={require('../../assets/icons/arrow.png')} style={isDarkMode ? styles.arrowImageDark :  styles.arrowImage} />
           </TouchableOpacity>
         </View>
 
         {/* Second View with only Text */}
-        <View style={styles.textContainer}>
-          <Text style={styles.additionalText}>
+        <View style={isDarkMode ? styles.textContainerDark :  styles.textContainer}>
+          <Text style={isDarkMode ? styles.additionalTextDark :  styles.additionalText}>
           Gujarat secondary and Higher Secondary Education Board
           </Text>
         </View>
       </View>
-      <View style={styles.mainContainer}>
+      <View style={isDarkMode ? styles.mainContainerDark :  styles.mainContainer}>
         {/* First View with Left Texts and Right Arrow Image */}
-        <View style={styles.rowContainer}>
-          <View style={styles.leftTextContainer}>
-            <Text style={styles.mainText}>Degree</Text>
-            <Text style={styles.subText}>Under Graduate Degree(UG)</Text>
+        <View style={isDarkMode ? styles.rowContainerDark :  styles.rowContainer}>
+          <View style={isDarkMode ? styles.leftTextContainerDark :  styles.leftTextContainer}>
+            <Text style={isDarkMode ? styles.mainTextDark :  styles.mainText}>Degree</Text>
+            <Text style={isDarkMode ? styles.subTextDark :  styles.subText}>Under Graduate Degree(UG)</Text>
           </View>
-          <TouchableOpacity style={styles.arrowContainer} onPress={goToUg}>
-            <Image source={require('../../assets/icons/arrow.png')} style={styles.arrowImage} />
+          <TouchableOpacity style={isDarkMode ? styles.arrowContainerDark :  styles.arrowContainer} onPress={goToUg}>
+            <Image source={require('../../assets/icons/arrow.png')} style={isDarkMode ? styles.arrowImageDark :  styles.arrowImage} />
           </TouchableOpacity>
         </View>
 
         {/* Second View with only Text */}
-        <View style={styles.textContainer}>
-          <Text style={styles.additionalText}>
+        <View style={isDarkMode ? styles.textContainerDark :  styles.textContainer}>
+          <Text style={isDarkMode ? styles.additionalTextDark :  styles.additionalText}>
        The Maharaja Sayajirao University of Baroda
           </Text>
         </View>
@@ -110,11 +111,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 10,
     overflow: 'hidden', // Ensures children don't overflow rounded corners
-    // elevation: 2, // Adds shadow for Android
-    // shadowColor: '#000', // Adds shadow for iOS
-    // shadowOffset: { width: 0, height: 2 },
-    // shadowOpacity: 0.2,
-    // shadowRadius: 2,
   },
   rowContainer: {
     flexDirection: 'row',
@@ -155,6 +151,75 @@ const styles = StyleSheet.create({
   additionalText: {
     fontSize: 12,
     color: '#000',
+  },
+  // dark
+  containerDark: {
+    flex: 1,
+    backgroundColor: '#1E1E1E',
+  },
+  headerDark: {
+    height: 58,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    backgroundColor: '#22395C',
+    paddingHorizontal: 16,
+    borderBottomWidth: 1,
+    // borderBottomColor: '#ddd',
+  },
+  headerTextDark: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#fff',
+  },
+  mainContainerDark: {
+    marginBottom:14,
+    marginTop:14,
+    marginRight:9,
+    marginLeft:9,
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    overflow: 'hidden', // Ensures children don't overflow rounded corners
+  },
+  rowContainerDark: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 16,
+    backgroundColor: '#565E69',
+    borderTopLeftRadius: 10, // Rounded top corners
+    borderTopRightRadius: 10,
+  },
+  leftTextContainerDark: {
+    flex: 1,
+  },
+  mainTextDark: {
+    fontSize: 11,
+    fontWeight: 'bold',
+    color: '#fff',
+  },
+  subTextDark: {
+    fontSize: 14,
+    color: '#fff',
+    marginTop: 4,
+  },
+  arrowContainerDark: {
+    paddingLeft: 10,
+  },
+  arrowImageDark: {
+ width: 15, // Width of the arrow icon
+    height: 15, // Height of the arrow icon
+    resizeMode: 'contain', // Keep aspect ratio of the arrow
+  },
+  textContainerDark: {
+    padding: 16,
+    backgroundColor: '#869BBA',
+    borderBottomLeftRadius: 10, // Rounded bottom corners
+    borderBottomRightRadius: 10,
+  },
+  additionalTextDark: {
+    fontSize: 12,
+    color: '#fff',
   },
 });
 

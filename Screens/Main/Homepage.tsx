@@ -1,5 +1,6 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView, useColorScheme } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const HomePage: React.FC = () => {
@@ -11,29 +12,31 @@ const HomePage: React.FC = () => {
     const goToEducation = () => {
     navigation.navigate('EducationScreen'); // Replace 'EducationScreen' with your actual route name
   };
-
+  const isDarkMode = useColorScheme() === 'dark';
 
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.headerText}>Dashboard</Text>
-        <View style={styles.headerIcons}>
-          <TouchableOpacity style={styles.iconButton}>
+    <ScrollView style={isDarkMode ? styles.containerDark : styles.container}>
+      {/* navbar part */}
+      <View style={isDarkMode ? styles.headerDark : styles.header}>
+        <Text style={isDarkMode ? styles.headerTextDark : styles.headerText}>Dashboard</Text>
+        <View style={isDarkMode ? styles.headerIconsDark : styles.headerIcons}>
+          <TouchableOpacity style={isDarkMode ? styles.iconButtonDark : styles.iconButton}>
             <Image
               source={require('../../assets/icons/notification.png')}
-              style={styles.notification}
+              style={isDarkMode ? styles.notificationDark : styles.notification}
             />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.iconButton}>
-            <Image source={require('../../assets/icons/menu.png')}  style={styles.notification} />
+          <TouchableOpacity style={isDarkMode ? styles.iconButtonDark : styles.iconButton}>
+            <Image source={require('../../assets/icons/menu.png')}  style={isDarkMode ? styles.notificationDark : styles.notification} />
           </TouchableOpacity>
         </View>
       </View>
-
-      <View style={styles.homestyle}>
-        <View style={styles.mainContent}>
-          <View style={styles.infoContainer}>
-            <View style={styles.textContainer}>
+{/* details and menu part */}
+      <View style={isDarkMode ? styles.homestyleDark : styles.homestyle}>
+        {/*  profile part*/}
+        <View style={isDarkMode ? styles.mainContentDark : styles.mainContent}>
+          <View style={isDarkMode ? styles.infoContainerDark : styles.infoContainer}>
+            <View style={isDarkMode ? styles.textContainerDark : styles.textContainer}>
               <Text style={[styles.textItem, { fontSize: 24, color: '#000', fontWeight: 'bold' }]}>
                 Hello 👋
               </Text>
@@ -44,152 +47,153 @@ const HomePage: React.FC = () => {
                 vidhishah@gmail.com
               </Text>
             </View>
-            <TouchableOpacity style={styles.arrowButton} onPress={goToProfile}>
-        <Image  source={require('../../assets/icons/arrow.png')} style={styles.arrow} />
+            <TouchableOpacity style={isDarkMode ? styles.arrowButtonDark : styles.arrowButton} onPress={goToProfile}>
+        <Image  source={require('../../assets/icons/arrow.png')} style={isDarkMode ? styles.arrowDark : styles.arrow} />
       </TouchableOpacity>
           </View>
-          <Text style={[styles.textItem, { fontSize: 14, color: '#000', fontWeight: 'bold' }]}>
+          <Text style={[isDarkMode ?  styles.textItemDark : styles.textItem, { fontSize: 14, color: '#000', fontWeight: 'bold' }]}>
             Quick Links
           </Text>
-          <View style={styles.linkContainer}>
-            <View style={[styles.linkInputWrapper, { width: '40%' }]}>
-              <Text style={styles.linkInput}>Request Status</Text>
+          <View style={isDarkMode ? styles.linkContainerDark : styles.linkContainer}>
+            <View style={[isDarkMode ? styles.linkInputWrapperDark : styles.linkInputWrapper, { width: '40%' }]}>
+              <Text style={isDarkMode ?  styles.linkInputDark : styles.linkInput}>Request Status</Text>
             </View>
-            <View style={[styles.linkInputWrapper, { width: '25%' }]}>
-              <Text style={styles.linkInput}>Result</Text>
+            <View style={[ isDarkMode ? styles.linkInputWrapperDark : styles.linkInputWrapper, { width: '25%' }]}>
+              <Text style={isDarkMode ? styles.linkInputDark : styles.linkInput}>Result</Text>
             </View>
-            <View style={[styles.linkInputWrapper, { width: '25%' }]}>
-              <Text style={styles.linkInput}>Fees</Text>
+            <View style={[isDarkMode ? styles.linkInputWrapperDark : styles.linkInputWrapper, { width: '25%' }]}>
+              <Text style={isDarkMode ? styles.linkInputDark : styles.linkInput}>Fees</Text>
             </View>
           </View>
         </View>
-
-        <View style={styles.certificateMainContainer}>
-          <View style={styles.certificateTitleContainer}>
-            <Text style={styles.certificateTitleText}>Certificate Course in Temple Management</Text>
+{/* alert1 */}
+        <View style={isDarkMode ? styles.certificateMainContainerDark : styles.certificateMainContainer}>
+          <View style={isDarkMode ? styles.certificateTitleContainerDark : styles.certificateTitleContainer}>
+            <Text style={isDarkMode ? styles.certificateTitleTextDark : styles.certificateTitleText}>Certificate Course in Temple Management</Text>
           </View>
-          <View style={styles.certificatemessage}>
-            <Text style={styles.placeholderText}>Provisionally_Eligible</Text>
-            <Text style={styles.remarksText}>
+          <View style={isDarkMode ? styles.certificatemessageDark : styles.certificatemessage}>
+            <Text style={isDarkMode ? styles.placeholderTextDark : styles.placeholderText}>Provisionally_Eligible</Text>
+            <Text style={isDarkMode ? styles.remarksTextDark : styles.remarksText}>
               Remarks: Dear student, your eligibility has been resolved provisionally, subject to submission of Original Migration Certificate to your building office. Your Eligibility would be marked Final after submission of Original Migration Certificate.
             </Text>
           </View>
         </View>
-
-        <View style={styles.certificateMainContainer}>
-          <View style={styles.certificateTitleContainer}>
-            <Text style={styles.certificateTitleText}>ACHARYA</Text>
+{/* alert2 */}
+        <View style={isDarkMode ? styles.certificateMainContainerDark : styles.certificateMainContainer}>
+          <View style={isDarkMode ? styles.certificateTitleContainerDark : styles.certificateTitleContainer}>
+            <Text style={isDarkMode ? styles.certificateTitleTextDark : styles.certificateTitleText}>ACHARYA</Text>
           </View>
-          <View style={styles.certificatemessage}>
-            <Text style={styles.placeholderText}>Provisionally_Eligible</Text>
-            <Text style={styles.remarksText}>
+          <View style={isDarkMode ? styles.certificatemessageDark : styles.certificatemessage}>
+            <Text style={isDarkMode ? styles.placeholderTextDark : styles.placeholderText}>Provisionally_Eligible</Text>
+            <Text style={isDarkMode ? styles.remarksTextDark : styles.remarksText}>
               Remarks: Dear student, your eligibility has been resolved provisionally, subject to submission of Original Migration Certificate to your building office. Your Eligibility would be marked Final after submission of Original Migration Certificate.
             </Text>
           </View>
         </View>
-
-        <View style={styles.educationDetailsContainer}>
-          <View style={styles.greetingTextContainer}>
-            <Image source={require('../../assets/icons/book.png')} style={styles.bookIcon} />
-            <Text style={styles.greetingText}>
+{/* education details */}
+        <View style={isDarkMode ? styles.educationDetailsContainerDark : styles.educationDetailsContainer}>
+          <View style={isDarkMode ? styles.greetingTextContainerDark : styles.greetingTextContainer}>
+            <Image source={require('../../assets/icons/book.png')} style={isDarkMode ? styles.bookIconDark : styles.bookIcon} />
+            <Text style={isDarkMode ? styles.greetingTextDark : styles.greetingText}>
               Educational Details
             </Text>
           </View>
-          <TouchableOpacity style={styles.expandDetailsButton} onPress={goToEducation}  >
+          <TouchableOpacity style={isDarkMode ? styles.expandDetailsButtonDark : styles.expandDetailsButton} onPress={goToEducation}  >
             <Image source={require('../../assets/icons/arrow.png')} style={styles.expandArrowIcon}  />
           </TouchableOpacity>
         </View>
-
-        <View style={styles.ExaminationContainer}>
-          <Text style={styles.greetingText}>
+{/* examination details */}
+        <View style={isDarkMode ? styles.ExaminationContainerDark : styles.ExaminationContainer}>
+          <Text style={isDarkMode ? styles.greetingTextDark : styles.greetingText}>
           Examination
           </Text>
-        <View style={styles.rowContainer}>
-  <TouchableOpacity style={styles.coloredBox} onPress={() => { /* Handle press */ }}>
-    <Text style={styles.boxText}>Time Table</Text>
+        <View style={isDarkMode ? styles.rowContainerDark : styles.rowContainer}>
+  <TouchableOpacity style={isDarkMode ? styles.coloredBoxDark : styles.coloredBox} onPress={() => { /* Handle press */ }}>
+    <Text style={isDarkMode ? styles.boxTextDark : styles.boxText}>Time Table</Text>
   </TouchableOpacity>
-  <TouchableOpacity style={styles.coloredBox} onPress={() => { /* Handle press */ }}>
-    <Text style={styles.boxText}>ID Card</Text>
+  <TouchableOpacity style={isDarkMode ? styles.coloredBoxDark : styles.coloredBox} onPress={() => { /* Handle press */ }}>
+    <Text style={isDarkMode ? styles.boxTextDark : styles.boxText}>ID Card</Text>
   </TouchableOpacity>
 </View>
 
         </View>
-
-        <View style={styles.ExaminationContainer}>
-          <Text style={styles.greetingText}>
+{/* exam fee and hall tickets */}
+        <View style={isDarkMode ? styles.ExaminationContainerDark : styles.ExaminationContainer}>
+          <Text style={isDarkMode ? styles.greetingTextDark : styles.greetingText}>
        Exam - Fee & Hall Ticket
           </Text>
-         <View style={styles.rowContainer}>
-  <TouchableOpacity style={styles.coloredBox} onPress={() => { /* Handle press */ }}>
-    <Text style={styles.boxText}>Exam Fees</Text>
+         <View style={isDarkMode ?  styles.rowContainerDark : styles.rowContainer}>
+  <TouchableOpacity style={isDarkMode ? styles.coloredBoxDark : styles.coloredBox} onPress={() => { /* Handle press */ }}>
+    <Text style={isDarkMode ? styles.boxTextDark : styles.boxText}>Exam Fees</Text>
   </TouchableOpacity>
-  <TouchableOpacity style={styles.coloredBox} onPress={() => { /* Handle press */ }}>
-    <Text style={styles.boxText}>Hall Ticket</Text>
+  <TouchableOpacity style={isDarkMode ? styles.coloredBoxDark : styles.coloredBox} onPress={() => { /* Handle press */ }}>
+    <Text style={isDarkMode ? styles.boxTextDark : styles.boxText}>Hall Ticket</Text>
   </TouchableOpacity>
 </View>
 
         </View>
-
-        <View style={styles.ExaminationContainer}>
-          <Text style={styles.greetingText}>
+{/* academics details */}
+        <View style={isDarkMode ? styles.ExaminationContainerDark : styles.ExaminationContainer}>
+          <Text style={isDarkMode ?  styles.greetingTextDark : styles.greetingText}>
            Academics
           </Text>
-         <View style={styles.rowContainer}>
-  <TouchableOpacity style={styles.coloredBox} onPress={() => { /* Handle press */ }}>
-    <Text style={styles.boxText}>ADM Fees Receipt</Text>
+         <View style={isDarkMode ? styles.rowContainerDark : styles.rowContainer}>
+  <TouchableOpacity style={isDarkMode ? styles.coloredBoxDark : styles.coloredBox} onPress={() => { /* Handle press */ }}>
+    <Text style={isDarkMode ? styles.boxTextDark : styles.boxText}>ADM Fees Receipt</Text>
   </TouchableOpacity>
-  <TouchableOpacity style={styles.coloredBox} onPress={() => { /* Handle press */ }}>
-    <Text style={styles.boxText}>Result</Text>
+  <TouchableOpacity style={isDarkMode ? styles.coloredBoxDark : styles.coloredBox} onPress={() => { /* Handle press */ }}>
+    <Text style={isDarkMode ? styles.boxTextDark : styles.boxText}>Result</Text>
   </TouchableOpacity>
 </View>
 
         </View>
-
-        <View style={styles.ExaminationContainer}>
-          <Text style={styles.greetingText}>
+{/* paper details */}
+        <View style={isDarkMode ? styles.ExaminationContainerDark : styles.ExaminationContainer}>
+          <Text style={isDarkMode ? styles.greetingTextDark : styles.greetingText}>
            Paper
           </Text>
-          <View style={styles.rowContainer}>
-  <TouchableOpacity style={styles.coloredBox} onPress={() => { /* Handle press */ }}>
-    <Text style={styles.boxText}>Selected Paper</Text>
+          <View style={isDarkMode ? styles.rowContainerDark : styles.rowContainer}>
+  <TouchableOpacity style={isDarkMode ? styles.coloredBoxDark : styles.coloredBox} onPress={() => { /* Handle press */ }}>
+    <Text style={isDarkMode ? styles.boxTextDark : styles.boxText}>Selected Paper</Text>
   </TouchableOpacity>
-  <TouchableOpacity style={styles.coloredBox} onPress={() => { /* Handle press */ }}>
-    <Text style={styles.boxText}>Paper Selection</Text>
+  <TouchableOpacity style={isDarkMode ? styles.coloredBoxDark : styles.coloredBox} onPress={() => { /* Handle press */ }}>
+    <Text style={isDarkMode ? styles.boxTextDark : styles.boxText}>Paper Selection</Text>
   </TouchableOpacity>
 </View>
 
         </View>
-
-        <View style={styles.ExaminationContainer}>
-          <Text style={styles.greetingText}>
+{/* request details */}
+        <View style={isDarkMode ? styles.ExaminationContainerDark : styles.ExaminationContainer}>
+          <Text style={isDarkMode ? styles.greetingTextDark : styles.greetingText}>
            Request
           </Text>
-          <View style={styles.rowContainer}>
-  <TouchableOpacity style={styles.coloredBox} onPress={() => { /* Handle press */ }}>
-    <Text style={styles.boxText}>Request Status</Text>
+          <View style={isDarkMode ? styles.rowContainerDark : styles.rowContainer}>
+  <TouchableOpacity style={isDarkMode ? styles.coloredBoxDark : styles.coloredBox} onPress={() => { /* Handle press */ }}>
+    <Text style={isDarkMode ? styles.boxTextDark : styles.boxText}>Request Status</Text>
   </TouchableOpacity>
-  <TouchableOpacity style={styles.coloredBox} onPress={() => { /* Handle press */ }}>
-    <Text style={styles.boxText}>New Request</Text>
+  <TouchableOpacity style={isDarkMode ? styles.coloredBoxDark : styles.coloredBox} onPress={() => { /* Handle press */ }}>
+    <Text style={isDarkMode ? styles.boxTextDark : styles.boxText}>New Request</Text>
   </TouchableOpacity>
 </View>
 
         </View>
-
-        <View style={styles.ExaminationContainer}>
-          <Text style={styles.greetingText}>
+{/* certificate details */}
+        <View style={isDarkMode ? styles.ExaminationContainerDark : styles.ExaminationContainer}>
+          <Text style={isDarkMode ? styles.greetingTextDark : styles.greetingText}>
            Certificate
           </Text>
-          <View style={styles.rowContainer}>
-  <TouchableOpacity style={styles.coloredBox} onPress={() => { /* Handle press */ }}>
-    <Text style={styles.boxText}>Download Certificate </Text>
+          <View style={isDarkMode ? styles.rowContainerDark : styles.rowContainer}>
+  <TouchableOpacity style={isDarkMode ? styles.coloredBoxDark : styles.coloredBox} onPress={() => { /* Handle press */ }}>
+    <Text style={isDarkMode ? styles.boxTextDark : styles.boxText}>Download Certificate </Text>
   </TouchableOpacity>
-  <TouchableOpacity style={styles.coloredBox} onPress={() => { /* Handle press */ }}>
-    <Text style={styles.boxText}>Request Certificate</Text>
+  <TouchableOpacity style={isDarkMode ? styles.coloredBoxDark : styles.coloredBox} onPress={() => { /* Handle press */ }}>
+    <Text style={isDarkMode ? styles.boxTextDark : styles.boxText}>Request Certificate</Text>
   </TouchableOpacity>
 </View>
 
         </View>
-<Text style={styles.logotext} >The Maharaja Sayajirao University - Baroda</Text>
+        {/* msu text */}
+  <Text style={isDarkMode ? styles.logotextDark : styles.logotext} >The Maharaja Sayajirao University - Baroda</Text>
       </View>
     </ScrollView>
   );
@@ -379,6 +383,197 @@ const styles = StyleSheet.create({
     color: '#000',
   },
   logotext:{
+    justifyContent:'center',
+    textAlign:'center',
+    alignItems:'center',
+    paddingTop:20,
+    paddingBottom:20,
+  },
+  // dark
+  containerDark: {
+    flex: 1,
+    backgroundColor: '#1E1E1E',
+  },
+  homestyleDark: {
+    margin: 12,
+  },
+  headerDark: {
+    height: 58,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    backgroundColor: '#22395C',
+    borderBottomWidth: 1,
+    // borderBottomColor: '#ddd',
+  },
+  headerTextDark: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#fff',
+  },
+  headerIconsDark: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  notificationDark: {
+    height: 20,
+    width: 20,
+  },
+  iconButtonDark: {
+    marginLeft: 16,
+  },
+  mainContentDark: {
+    paddingTop: 18,
+    paddingLeft: 18,
+    paddingRight: 18,
+    paddingBottom: 10,
+    backgroundColor: '#565E69',
+    borderRadius: 10,
+  },
+  infoContainerDark: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: '#869BBA',
+    borderRadius: 10,
+    marginBottom: 10,
+  },
+  textContainerDark: {
+    padding: 10,
+    margin: 1,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+  },
+  textItemDark: {
+    fontSize: 16,
+    color: '#fff',
+    // marginBottom: 8,
+  },
+  arrowButtonDark: {
+    padding: 8,
+  },
+  arrowDark: {
+    width: 20, // Width of the arrow icon
+    height: 20, // Height of the arrow icon
+    resizeMode: 'contain', // Keep aspect ratio of the arrow
+    color:'#fff',
+  },
+  linkContainerDark: {
+    marginTop: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '100%',
+  },
+  linkInputWrapperDark: {
+    height: 40,
+    borderRadius: 29,
+    justifyContent: 'center', // Center children vertically
+    alignItems: 'center', // Center children horizontally
+    backgroundColor: '#869BBA',
+  },
+  linkInputDark: {
+    fontWeight: 'bold',
+    fontSize: 12,
+    textAlign: 'center',
+    color: '#fff',
+  },
+  certificateMainContainerDark: {
+    backgroundColor: '#FFC6C0',
+    marginTop: 10,
+    borderRadius: 10,
+  },
+  certificateTitleContainerDark: {
+    backgroundColor: '#E74C3C',
+    borderRadius: 10,
+    height: 38,
+    justifyContent: 'center',
+    color: '#000',
+  },
+  certificateTitleTextDark: {
+    color: '#000',
+    alignItems: 'center',
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
+  certificatemessageDark: {
+    paddingTop: 10,
+    paddingLeft: 13,
+    paddingRight: 13,
+    paddingBottom: 13,
+  },
+  placeholderTextDark: {
+    color: '#E74C3C',
+    fontWeight: 'bold',
+    fontSize: 12,
+  },
+  remarksTextDark: {
+    color: '#fff',
+    fontSize: 12,
+    paddingTop: 5,
+  },
+  educationDetailsContainerDark: {
+    flexDirection: 'row', // Align children in a row
+    alignItems: 'center', // Center items vertically
+    justifyContent: 'space-between', // Space out items between start and end
+    padding: 20, // Add padding inside the container
+    backgroundColor: '#565E69', // Light grey background color
+    borderRadius: 8, // Rounded corners for the container
+    marginTop: 10, // Vertical margin to space out from other components
+  },
+  greetingTextContainerDark: {
+    flexDirection: 'row', // Align the book icon and text in a row
+    alignItems: 'center', // Center them vertically
+  },
+  bookIconDark: {
+    width: 24, // Width of the book icon
+    height: 24, // Height of the book icon
+    marginRight: 14, // Margin to space out the icon from the text
+    resizeMode: 'contain', // Keep the aspect ratio of the image
+  },
+  greetingTextDark: {
+    fontSize: 14, // Standard font size for the text
+    color: '#fff', // Black text color
+    fontWeight: 'bold', // Bold font weight for emphasis
+  },
+  expandDetailsButtonDark: {
+    padding: 10, // Increase touchable area with padding
+    alignItems: 'center', // Center arrow horizontally
+    justifyContent: 'center', // Center arrow vertically
+  },
+  expandArrowIconDark: {
+    width: 20, // Width of the arrow icon
+    height: 20, // Height of the arrow icon
+    resizeMode: 'contain', // Keep aspect ratio of the arrow
+  },
+  ExaminationContainerDark: {
+    backgroundColor: '#565E69',
+    marginTop: 10,
+    borderRadius: 10,
+    paddingBottom: 20,
+    paddingTop: 13,
+    paddingRight: 10,
+    paddingLeft: 10,
+  },
+  rowContainerDark: {
+    justifyContent: 'space-between',
+    marginTop: 16,
+    flexDirection: 'row',
+  },
+  coloredBoxDark: {
+    backgroundColor: '#869BBA',
+    height: 53,
+    width: '49%',
+    borderRadius: 10,
+    justifyContent: 'center',
+  },
+  boxTextDark: {
+    textAlign: 'center',
+    color: '#fff',
+  },
+  logotextDark:{
     justifyContent:'center',
     textAlign:'center',
     alignItems:'center',

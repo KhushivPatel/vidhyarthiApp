@@ -1,79 +1,81 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, useColorScheme, View } from 'react-native';
 
 const SscEducation = () => {
+    const isDarkMode = useColorScheme() === 'dark';
   return (
-    <View style={styles.container}>
+    <View style={isDarkMode ? styles.containerDark   : styles.container}>
       {/* Header */}
-      <View style={styles.header}>
-        <Text style={styles.headerText}>Educational Details</Text>
+      <View style={isDarkMode ? styles.headerDark   : styles.header}>
+        <Text style={isDarkMode ? styles.headerTextDark   : styles.headerText}>Educational Details</Text>
       </View>
 
       {/* Main Content */}
-      <View style={styles.mainContent}>
+      <View style={isDarkMode ? styles.mainContentDark   : styles.mainContent}>
         {/* Two Texts on the Right Side */}
-        <View style={styles.textContainerRight}>
-          <Text style={[styles.textRight, { fontWeight: 'bold', color: '#000', fontSize: 12 }]}>Degree</Text>
-          <Text style={styles.textRight}>SSC / 10th</Text>
+        <View style={isDarkMode ? styles.textContainerRightDark   : styles.textContainerRight}>
+          <Text style={[isDarkMode ? styles.textRightDark   : styles.textRight, { fontWeight: 'bold', fontSize: 12 }]}>Degree</Text>
+          <Text style={isDarkMode ? styles.textRightDark   : styles.textRight}>SSC / 10th</Text>
         </View>
 
         {/* Divider */}
-        <View style={styles.divider} />
+        <View style={isDarkMode ? styles.dividerDark   : styles.divider} />
 
         {/* Texts on Left and Right Side */}
-        <View style={styles.detailContainer}>
-          <View style={styles.textRow}>
-            <Text style={styles.textLeft}>Specialization</Text>
-            <Text style={styles.textRight}>General</Text>
+        <View style={isDarkMode ? styles.detailContainerDark   : styles.detailContainer}>
+          <View style={isDarkMode ? styles.textRowDark   : styles.textRow}>
+            <Text style={isDarkMode ? styles.textLeftDark   : styles.textLeft}>Specialization</Text>
+            <Text style={isDarkMode ? styles.textRightDark   : styles.textRight}>General</Text>
           </View>
-          <View style={styles.textRow}>
-            <Text style={styles.textLeft}>Board / University</Text>
-            <Text style={styles.textRight}>General</Text>
+          <View style={isDarkMode ? styles.textRowDark   : styles.textRow}>
+            <Text style={isDarkMode ? styles.textLeftDark   : styles.textLeft}>Board / University</Text>
+            <Text style={isDarkMode ? styles.textRightDark   : styles.textRight}>General</Text>
           </View>
-          <View style={styles.textRow}>
-            <Text style={styles.textLeft}>Faculty / School / College Name</Text>
-            <Text style={styles.textRight}>General</Text>
+           <View style={isDarkMode ? styles.textRowDark   : styles.textRow}>
+            <Text style={isDarkMode ? styles.textLeftDark   : styles.textLeft}>Board / University</Text>
+            <Text style={isDarkMode ? styles.textRightDark   : styles.textRight}>General</Text>
           </View>
-          <View style={styles.textRow}>
-            <Text style={styles.textLeft}>Specialization</Text>
-            <Text style={styles.textRight}>General</Text>
+           <View style={isDarkMode ? styles.textRowDark   : styles.textRow}>
+            <Text style={isDarkMode ? styles.textLeftDark   : styles.textLeft}>Board / University</Text>
+            <Text style={isDarkMode ? styles.textRightDark   : styles.textRight}>General</Text>
           </View>
-          <View style={styles.textRow}>
-            <Text style={styles.textLeft}>Specialization</Text>
-            <Text style={styles.textRight}>General</Text>
+          <View style={isDarkMode ? styles.textRowDark   : styles.textRow}>
+            <Text style={isDarkMode ? styles.textLeftDark   : styles.textLeft}>Specialization</Text>
+            <Text style={isDarkMode ? styles.textRightDark   : styles.textRight}>General</Text>
           </View>
 
           {/* ViewRow with equal-sized views and spacing */}
-          <View style={styles.viewRow}>
-            <View style={styles.equalView}>
-              <Text style={styles.textLeft}>Grade</Text>
-              <Text style={styles.textRight}>292 / 600</Text>
+          <View style={isDarkMode ? styles.viewRowDark   : styles.viewRow}>
+            <View style={isDarkMode ? styles.equalViewDark   : styles.equalView}>
+              <Text style={isDarkMode ? styles.textLeftDark   : styles.textLeft}>Grade</Text>
+              <Text style={isDarkMode ? styles.textRightDark   : styles.textRight}>292 / 600</Text>
             </View>
-            <View style={[styles.equalView, styles.equalViewRight]}>
-              <Text style={styles.textLeft}>Percentage</Text>
-              <Text style={styles.textRight}>48.67</Text>
+            <View style={[isDarkMode ? styles.textRowDark   : styles.equalView, styles.equalViewRight]}>
+              <Text style={isDarkMode ? styles.textLeftDark   : styles.textLeft}>Percentage</Text>
+              <Text style={isDarkMode ? styles.textRightDark   : styles.textRight}>48.67</Text>
             </View>
           </View>
           {/*  */}
-            <View style={styles.textRow}>
-            <Text style={styles.textLeft}>Specialization</Text>
-            <Text style={styles.textRight}>General</Text>
+            <View style={isDarkMode ? styles.textRowDark   : styles.textRow}>
+            <Text style={isDarkMode ? styles.textLeftDark   : styles.textLeft}>Specialization</Text>
+            <Text style={isDarkMode ? styles.textRightDark   : styles.textRight}>General</Text>
           </View>
-           <View style={styles.textRow}>
-            <Text style={styles.textLeft}>Specialization</Text>
-            <Text style={styles.textRight}>General</Text>
+           <View style={isDarkMode ? styles.textRowDark   : styles.textRow}>
+            <Text style={isDarkMode ? styles.textLeftDark   : styles.textLeft}>Specialization</Text>
+            <Text style={isDarkMode ? styles.textRightDark   : styles.textRight}>General</Text>
           </View>
-           <View style={styles.textRow}>
-            <Text style={styles.textLeft}>Specialization</Text>
-            <Text style={styles.textRight}>General</Text>
+           <View style={isDarkMode ? styles.textRowDark   : styles.textRow}>
+            <Text style={isDarkMode ? styles.textLeftDark   : styles.textLeft}>Specialization</Text>
+            <Text style={isDarkMode ? styles.textRightDark   : styles.textRight}>General</Text>
           </View>
-           <View style={styles.textRow}>
-            <Text style={styles.textLeft}>Specialization</Text>
-            <Text style={styles.textRight}>General</Text>
+           <View style={isDarkMode ? styles.textRowDark   : styles.textRow}>
+            <Text style={isDarkMode ? styles.textLeftDark   : styles.textLeft}>Specialization</Text>
+            <Text style={isDarkMode ? styles.textRightDark   : styles.textRight}>General</Text>
           </View>
-           <View style={styles.textRow}>
-            <Text style={styles.textLeft}>Specialization</Text>
-            <Text style={styles.textRight}>General</Text>
+           <View style={isDarkMode ? styles.textRowDark   : styles.textRow}>
+            <Text style={isDarkMode ? styles.textLeftDark   : styles.textLeft}>Specialization</Text>
+            <Text style={isDarkMode ? styles.textRightDark   : styles.textRight}>General</Text>
           </View>
         </View>
       </View>
@@ -156,6 +158,83 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   equalViewRight: {
+    marginLeft: 10, // Ensure there is a 10px space between the two views
+  },
+  // dark
+  containerDark: {
+    flex: 1,
+    backgroundColor: '#1E1E1E',
+  },
+  headerDark: {
+    height: 58,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    backgroundColor: '#22395C',
+    paddingHorizontal: 16,
+    borderBottomWidth: 1,
+    // borderBottomColor: '#ddd',
+  },
+  headerTextDark: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#fff',
+  },
+  mainContentDark: {
+    marginTop: 14,
+    marginLeft: 9,
+    marginRight: 9,
+    marginBottom: 14,
+    backgroundColor: '#565E69',
+    borderRadius: 10,
+    padding: 10,
+  },
+  textContainerRightDark: {
+    padding: 10,
+    alignItems: 'flex-start',
+  },
+  textRightDark: {
+    fontSize: 14,
+    color: '#fff',
+    marginBottom: 4,
+    textAlign: 'right',
+  },
+  dividerDark: {
+    height: 2,
+    backgroundColor: '#fff',
+    marginVertical: 10,
+  },
+  textRowDark: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: '#869BBA',
+    padding: 12,
+    borderRadius: 10,
+    marginBottom: 10,
+  },
+  textLeftDark: {
+    fontSize: 16,
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+  detailContainerDark: {
+    padding: 10,
+  },
+  viewRowDark: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  equalViewDark: {
+    flex: 1,
+    flexDirection: 'row', // Align children horizontally
+    justifyContent: 'space-between', // Space items within the view
+    backgroundColor: '#869BBA', // Optional: Background color to visualize the equal sizing
+    padding: 12,
+    borderRadius: 10,
+  },
+  equalViewRightDark: {
     marginLeft: 10, // Ensure there is a 10px space between the two views
   },
 });
