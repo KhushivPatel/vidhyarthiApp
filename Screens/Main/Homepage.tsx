@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView, useColorScheme } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -13,6 +13,25 @@ const HomePage: React.FC = () => {
     navigation.navigate('EducationScreen'); // Replace 'EducationScreen' with your actual route name
   };
   const isDarkMode = useColorScheme() === 'dark';
+    const [notificationCount, setNotificationCount] = useState(3); // Example notification count
+
+  const handleNotificationClick = () => {
+    // Navigate to the Notification page
+    navigation.navigate('NotificationScreen');
+  };
+  const handleRequestStatusClick = () => {
+    // Navigate to the Notification page
+    navigation.navigate('RequestStatus');
+  };
+  const handleResultClick = () => {
+    // Navigate to the Notification page
+    navigation.navigate('Result');
+  };
+  const handleFeeClick = () => {
+    // Navigate to the Notification page
+    navigation.navigate('Fee');
+  };
+
 
   return (
     <ScrollView style={isDarkMode ? styles.containerDark : styles.container}>
@@ -20,12 +39,20 @@ const HomePage: React.FC = () => {
       <View style={isDarkMode ? styles.headerDark : styles.header}>
         <Text style={isDarkMode ? styles.headerTextDark : styles.headerText}>Dashboard</Text>
         <View style={isDarkMode ? styles.headerIconsDark : styles.headerIcons}>
-          <TouchableOpacity style={isDarkMode ? styles.iconButtonDark : styles.iconButton}>
-            <Image
-              source={require('../../assets/icons/notification.png')}
-              style={isDarkMode ? styles.notificationDark : styles.notification}
-            />
-          </TouchableOpacity>
+         <TouchableOpacity
+        style={isDarkMode ? styles.iconButtonDark : styles.iconButton}
+        onPress={handleNotificationClick} // Add onPress handler
+      >
+        <Image
+          source={require('../../assets/icons/notification.png')}
+          style={isDarkMode ? styles.notificationDark : styles.notification}
+        />
+        {notificationCount > 0 && ( // Conditional rendering of the badge
+          <View style={styles.badge}>
+            <Text style={styles.badgeText}>{notificationCount}</Text>
+          </View>
+        )}
+      </TouchableOpacity>
           <TouchableOpacity style={isDarkMode ? styles.iconButtonDark : styles.iconButton}>
             <Image source={require('../../assets/icons/menu.png')}  style={isDarkMode ? styles.notificationDark : styles.notification} />
           </TouchableOpacity>
@@ -55,16 +82,46 @@ const HomePage: React.FC = () => {
             Quick Links
           </Text>
           <View style={isDarkMode ? styles.linkContainerDark : styles.linkContainer}>
-            <View style={[isDarkMode ? styles.linkInputWrapperDark : styles.linkInputWrapper, { width: '40%' }]}>
-              <Text style={isDarkMode ?  styles.linkInputDark : styles.linkInput}>Request Status</Text>
-            </View>
-            <View style={[ isDarkMode ? styles.linkInputWrapperDark : styles.linkInputWrapper, { width: '25%' }]}>
-              <Text style={isDarkMode ? styles.linkInputDark : styles.linkInput}>Result</Text>
-            </View>
-            <View style={[isDarkMode ? styles.linkInputWrapperDark : styles.linkInputWrapper, { width: '25%' }]}>
-              <Text style={isDarkMode ? styles.linkInputDark : styles.linkInput}>Fees</Text>
-            </View>
-          </View>
+  {/* Request Status Touchable */}
+  <TouchableOpacity
+    style={[
+      isDarkMode ? styles.linkInputWrapperDark : styles.linkInputWrapper,
+      { width: '40%' },
+    ]}
+    onPress={handleRequestStatusClick}
+  >
+    <Text style={isDarkMode ? styles.linkInputDark : styles.linkInput}>
+      Request Status
+    </Text>
+  </TouchableOpacity>
+
+  {/* Result Touchable */}
+  <TouchableOpacity
+    style={[
+      isDarkMode ? styles.linkInputWrapperDark : styles.linkInputWrapper,
+      { width: '25%' },
+    ]}
+    onPress={handleResultClick}
+  >
+    <Text style={isDarkMode ? styles.linkInputDark : styles.linkInput}>
+      Result
+    </Text>
+  </TouchableOpacity>
+
+  {/* Fees Touchable */}
+  <TouchableOpacity
+    style={[
+      isDarkMode ? styles.linkInputWrapperDark : styles.linkInputWrapper,
+      { width: '25%' },
+    ]}
+    onPress={handleFeeClick}
+  >
+    <Text style={isDarkMode ? styles.linkInputDark : styles.linkInput}>
+      Fees
+    </Text>
+  </TouchableOpacity>
+</View>
+
         </View>
 {/* alert1 */}
         <View style={isDarkMode ? styles.certificateMainContainerDark : styles.certificateMainContainer}>
@@ -579,6 +636,23 @@ const styles = StyleSheet.create({
     alignItems:'center',
     paddingTop:20,
     paddingBottom:20,
+  },
+    badge: {
+    position: 'absolute',
+    right: -10,
+    top: -10,
+    backgroundColor: 'red',
+    borderRadius: 10,
+    padding: 2,
+    minWidth: 20,
+    height: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  badgeText: {
+    color: 'white',
+    fontSize: 12,
+    fontWeight: 'bold',
   },
 });
 

@@ -13,6 +13,10 @@ import EducationScreen from './Screens/Education/EducationScreen';
 import SscEducation from './Screens/Education/SscEducation';
 import HscEducation from './Screens/Education/HscEducation';
 import UgEducation from './Screens/Education/UgEducation';
+import NotificationScreen from './Screens/navScreens/NotificationScreen';
+import Result from './Screens/Result/Result';
+import Fee from './Screens/Fee/Fee';
+import RequestStatus from './Screens/Request/RequestStatus';
 
 // Enable react-native-screens to improve performance
 enableScreens();
@@ -28,6 +32,10 @@ type RootStackParamList = {
   SscEducation: undefined;
   HscEducation: undefined;
   UgEducation: undefined;
+  NotificationScreen:undefined;
+  RequestStatus:undefined;
+  Result:undefined;
+  Fee:undefined;
 };
 
 // Create a stack navigator with the defined type
@@ -80,6 +88,26 @@ const App: React.FC = () => {
         <Stack.Screen
           name="UgEducation"
           component={UgEducation}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="NotificationScreen"
+          component={NotificationScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="RequestStatus"
+          component={RequestStatus}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Result"
+          component={Result}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Fee"
+          component={Fee}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
