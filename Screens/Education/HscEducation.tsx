@@ -24,14 +24,14 @@ return (
 
         {/* Texts on Left and Right Side */}
         <View style={isDarkMode ? styles.detailContainerDark   : styles.detailContainer}>
-          <View style={isDarkMode ? styles.textRowDark   : styles.textRow}>
+          `<View style={isDarkMode ? styles.textRowDark   : styles.textRow}>
             <Text style={isDarkMode ? styles.textLeftDark   : styles.textLeft}>Specialization</Text>
             <Text style={isDarkMode ? styles.textRightDark   : styles.textRight}>General</Text>
           </View>
           <View style={isDarkMode ? styles.textRowDark   : styles.textRow}>
             <Text style={isDarkMode ? styles.textLeftDark   : styles.textLeft}>Board / University</Text>
             <Text style={isDarkMode ? styles.textRightDark   : styles.textRight}>General</Text>
-          </View>
+          </View>`
            <View style={isDarkMode ? styles.textRowDark   : styles.textRow}>
             <Text style={isDarkMode ? styles.textLeftDark   : styles.textLeft}>Board / University</Text>
             <Text style={isDarkMode ? styles.textRightDark   : styles.textRight}>General</Text>
