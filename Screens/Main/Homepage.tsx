@@ -31,6 +31,14 @@ const HomePage: React.FC = () => {
     // Navigate to the Notification page
     navigation.navigate('Fee');
   };
+  const handleRequest = () => {
+    // Navigate to the Notification page
+    navigation.navigate('RequestStatus');
+  };
+  const handleNewRequest = () => {
+    // Navigate to the Notification page
+    navigation.navigate('NewRequest');
+  };
 
 
   return (
@@ -225,10 +233,10 @@ const HomePage: React.FC = () => {
            Request
           </Text>
           <View style={isDarkMode ? styles.rowContainerDark : styles.rowContainer}>
-  <TouchableOpacity style={isDarkMode ? styles.coloredBoxDark : styles.coloredBox} onPress={() => { /* Handle press */ }}>
+  <TouchableOpacity style={isDarkMode ? styles.coloredBoxDark : styles.coloredBox} onPress={handleRequest}>
     <Text style={isDarkMode ? styles.boxTextDark : styles.boxText}>Request Status</Text>
   </TouchableOpacity>
-  <TouchableOpacity style={isDarkMode ? styles.coloredBoxDark : styles.coloredBox} onPress={() => { /* Handle press */ }}>
+  <TouchableOpacity style={isDarkMode ? styles.coloredBoxDark : styles.coloredBox} onPress={handleNewRequest}>
     <Text style={isDarkMode ? styles.boxTextDark : styles.boxText}>New Request</Text>
   </TouchableOpacity>
 </View>

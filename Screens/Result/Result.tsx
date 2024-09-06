@@ -1,65 +1,58 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { View, Text, useColorScheme, TouchableOpacity, ScrollView, StyleSheet, ViewStyle, TextStyle } from 'react-native';
-
-// Define types for the detail row props
-interface DetailRowProps {
-  label: string;
-  value: string;
-}
+import resultData, { ResultDataType } from '../TempData/ResultData'; // Import the result data
 
 const Result: React.FC = () => {
   const navigation = useNavigation();
-    const goToResult = () => {
-    navigation.navigate('Viewresult');
-  };
   const isDarkMode = useColorScheme() === 'dark';
   const styles = createStyles(isDarkMode);
+
+  const handleNavigation = (data: any) => {
+    navigation.navigate('Viewresult', { student: data });
+  };
+
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerText}>Result</Text>
       </View>
       <ScrollView style={styles.scrollView}>
-        <View style={styles.mainContent}>
-          <View style={styles.textContainerRight}>
-            <Text style={[styles.textRight, styles.boldText, styles.smallText]}>Request Name</Text>
-            <Text style={styles.textRight}>Father/ Mother/ Spouse Name</Text>
-          </View>
-
-          <View style={styles.detailContainer}>
-            {/* Individual rows */}
-            <View style={styles.textRow}>
-              <Text style={styles.textLeft}>Specialization</Text>
-              <Text style={styles.textRight}>General</Text>
-            </View>
-            <View style={styles.textRow}>
-              <Text style={styles.textLeft}>Board / University</Text>
-              <Text style={styles.textRight}>General</Text>
-            </View>
-            <View style={styles.textRow}>
-              <Text style={styles.textLeft}>Semester</Text>
-              <Text style={styles.textRight}>First Semester of MCOM-I-Accounting and Financial Management-2022-2023</Text>
-            </View>
-            <View style={styles.textRow}>
-              <Text style={styles.textLeft}>Existing Record</Text>
-              <Text style={styles.textRight}>8021000046_PhotoId.pdf</Text>
-            </View>
-            <View style={styles.textRow}>
-              <Text style={styles.textLeft}>New Record</Text>
-              <Text style={styles.textRight}>8022050054_RequestedFile_404.php</Text>
+        {resultData.map((data) => (
+          <View key={data.id} style={styles.mainContent}>
+            <View style={styles.textContainerRight}>
+              <Text style={[styles.textRight, styles.boldText, styles.smallText]}>Faculty Name</Text>
+              <Text style={styles.textRight}>{data.facultyName}</Text>
             </View>
 
-            <TouchableOpacity style={styles.button} onPress={goToResult}>
-              <Text style={styles.buttonText}>View Result</Text>
-            </TouchableOpacity>
+            <View style={styles.detailContainer}>
+              <View style={styles.textRow}>
+                <Text style={styles.textLeft}>Semester</Text>
+                <Text style={styles.textRight}>{data.semester}</Text>
+              </View>
+              <View style={styles.textRow}>
+                <Text style={styles.textLeft}>Exam Event</Text>
+                <Text style={styles.textRight}>{data.examEvent}</Text>
+              </View>
+              <View style={styles.textRow}>
+                <Text style={styles.textLeft}>Result Status</Text>
+                <Text style={styles.textRight}>{data.resultStatus}</Text>
+              </View>
+               <TouchableOpacity
+                style={styles.button}
+                onPress={() => handleNavigation(data)} // Pass the data here
+              >
+                <Text style={styles.buttonText}>View Result</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-        </View>
+        ))}
       </ScrollView>
     </View>
   );
 };
-// Define styles
+
 const createStyles = (isDarkMode: boolean) =>
   StyleSheet.create({
     container: {
@@ -111,20 +104,20 @@ const createStyles = (isDarkMode: boolean) =>
       fontSize: 16,
       color: isDarkMode ? '#fff' : '#000',
       fontWeight: 'bold',
-      flex: 0.5, // Ensures it takes up available space
+      flex: 0.5,
     } as TextStyle,
     textRight: {
       fontSize: 16,
       color: isDarkMode ? '#fff' : '#000',
       textAlign: 'right',
-      flex: 1, // Takes more space to handle long text
+      flex: 1,
     } as TextStyle,
     detailContainer: {
-      paddingTop:12,
-      paddingLeft:10,
-      paddingRight:10,
-      paddingBottom:20,
-      backgroundColor:isDarkMode ? '#869BBA' : '#B9D5FF',
+      paddingTop: 12,
+      paddingLeft: 10,
+      paddingRight: 10,
+      paddingBottom: 20,
+      backgroundColor: isDarkMode ? '#869BBA' : '#B9D5FF',
       borderBottomLeftRadius: 10,
       borderBottomRightRadius: 10,
     } as ViewStyle,
@@ -138,7 +131,7 @@ const createStyles = (isDarkMode: boolean) =>
       marginTop: 10,
       paddingVertical: 15,
       paddingHorizontal: 20,
-      backgroundColor:isDarkMode ? '#152947' : '#5287D7',
+      backgroundColor: isDarkMode ? '#152947' : '#5287D7',
       borderRadius: 10,
       alignItems: 'center',
     } as ViewStyle,

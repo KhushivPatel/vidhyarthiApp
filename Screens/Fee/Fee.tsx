@@ -2,23 +2,17 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet, useColorScheme, ScrollView, ViewStyle, TextStyle, ImageStyle } from 'react-native';
-
-// Define types for props
-interface DetailRowProps {
-  label: string;
-  value: string;
-}
+import feeData, { FeeData } from '../TempData/feeData'; // Importing fee data
 
 const Fee: React.FC = () => {
-      const navigation = useNavigation();
+  const navigation = useNavigation();
   const isDarkMode = useColorScheme() === 'dark';
-const styles = createStyles(isDarkMode);
-  const goToRecipt = () => {
-    navigation.navigate('E_receipt');
-  };
+  const styles = createStyles(isDarkMode);
 
-  // Define fee status
-  const feeStatus = 'paid'; // or 'unpaid'
+const goToRecipt = (fee: FeeData) => {
+  navigation.navigate('E_receipt', { fee });
+};
+
 
   return (
     <View style={styles.container}>
@@ -33,68 +27,52 @@ const styles = createStyles(isDarkMode);
       </View>
 
       <ScrollView style={styles.scrollView}>
-        <View style={styles.mainContent}>
-          {/* Two Texts on the Right Side */}
-          <View style={styles.textContainerRight}>
-            <Text style={[styles.textRight, styles.boldText, styles.smallText]}>Application Id</Text>
-            <Text style={styles.textRight}>562874110555</Text>
-          </View>
-
-          {/* Divider */}
-          <View style={styles.divider} />
-
-          {/* Detail Rows */}
-          <View style={styles.detailContainer}>
-            <View style={[
-              styles.textRow,
-              { backgroundColor: feeStatus === 'paid' ? '#80FFA3' : '#ff0000' },
-            ]}>
-              <Text style={styles.textLeft}>Status</Text>
-              <Text style={styles.textRight}>Paid</Text>
+        {feeData.map((fee, index) => (
+          <View key={index} style={styles.mainContent}>
+            {/* Two Texts on the Right Side */}
+            <View style={styles.textContainerRight}>
+              <Text style={[styles.textRight, styles.boldText, styles.smallText]}>Application Id</Text>
+              <Text style={styles.textRight}>{fee.applicationId}</Text>
             </View>
-            <View style={styles.textRow}>
-              <Text style={styles.textLeft}>Transaction ID</Text>
-              <Text style={styles.textRight}>1011008715628741105551</Text>
-            </View>
-            <View style={styles.textRow}>
-              <Text style={styles.textLeft}>Programme Instance Part Term</Text>
-              <Text style={styles.textRight}>8022050054_RequestedFile_404.php</Text>
-            </View>
-            <View style={styles.textRow}>
-              <Text style={styles.textLeft}>Installment No.</Text>
-              <Text style={styles.textRight}>1</Text>
-            </View>
-            <View style={styles.textRow}>
-              <Text style={styles.textLeft}>View Fees Receipt</Text>
-              <TouchableOpacity style={styles.button} onPress={goToRecipt}>
 
-              <Text style={styles.textRight}>View</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-{/*  */}
- <View style={styles.mainContent}>
-          {/* Two Texts on the Right Side */}
-          <View style={styles.textContainerRight}>
-            <Text style={[styles.textRight, styles.boldText, styles.smallText]}>Application Id</Text>
-            <Text style={styles.textRight}>562874110555</Text>
-          </View>
+            {/* Divider */}
+            <View style={styles.divider} />
 
-          {/* Divider */}
-          <View style={styles.divider} />
+            {/* Detail Rows */}
+            <View style={styles.detailContainer}>
+              <View style={[
+                styles.textRow,
+                { backgroundColor: fee.status === 'paid' ? '#80FFA3' : '#FF8686' },
+              ]}>
+                <Text style={styles.textLeft}>Status</Text>
+                <Text style={styles.textRight}>{fee.status.charAt(0).toUpperCase() + fee.status.slice(1)}</Text>
+              </View>
+              {fee.status === 'paid' && (
+                <>
+                  <View style={styles.textRow}>
+                    <Text style={styles.textLeft}>Transaction ID</Text>
+                    <Text style={styles.textRight}>{fee.transactionId}</Text>
+                  </View>
+                  <View style={styles.textRow}>
+                    <Text style={styles.textLeft}>Programme Instance Part Term</Text>
+                    <Text style={styles.textRight}>{fee.programmeInstancePartTerm}</Text>
+                  </View>
+                  <View style={styles.textRow}>
+                    <Text style={styles.textLeft}>Installment No.</Text>
+                    <Text style={styles.textRight}>{fee.installmentNo}</Text>
+                  </View>
+                  <View style={styles.textRow}>
+                    <Text style={styles.textLeft}>View Fees Receipt</Text>
+                   <TouchableOpacity style={styles.button} onPress={() => goToRecipt(fee)}>
+  <Text style={styles.textRight}>View</Text>
+</TouchableOpacity>
 
-          {/* Detail Rows */}
-          <View style={styles.detailContainer}>
-            <View style={[
-              styles.textRow,
-              { backgroundColor: feeStatus === 'unpaid' ? '#80FFA3' : '#FF8686' },
-            ]}>
-              <Text style={styles.textLeft}>Status</Text>
-              <Text style={styles.textRight}>unpaid</Text>
+                  </View>
+                </>
+              )}
             </View>
           </View>
-        </View>
+        ))}
       </ScrollView>
     </View>
   );
@@ -143,7 +121,7 @@ const createStyles = (isDarkMode: boolean) => StyleSheet.create({
     color: isDarkMode ? '#fff' : '#000',
     marginBottom: 4,
     textAlign: 'right',
-    flex:2,
+    flex: 2,
   } as TextStyle,
   textRow: {
     flexDirection: 'row',
@@ -158,7 +136,7 @@ const createStyles = (isDarkMode: boolean) => StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     color: isDarkMode ? '#fff' : '#000',
-    flex:2,
+    flex: 2,
   } as TextStyle,
   detailContainer: {
     padding: 5,
@@ -174,13 +152,13 @@ const createStyles = (isDarkMode: boolean) => StyleSheet.create({
   smallText: {
     fontSize: 12,
   } as TextStyle,
-  button:{
-    backgroundColor:'#8AABDC',
-    padding:5,
-    borderRadius:10,
-    width:100,
-    alignItems:'center',
-    justifyContent:'center',
+  button: {
+    backgroundColor: '#8AABDC',
+    padding: 5,
+    borderRadius: 10,
+    width: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 

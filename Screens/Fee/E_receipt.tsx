@@ -1,133 +1,138 @@
 import { View, Text, useColorScheme, StyleSheet, ViewStyle, TextStyle, Image, ScrollView } from 'react-native';
 import React from 'react';
+import { useRoute } from '@react-navigation/native';
 
-const E_recipt = () => {
+const E_recipt:React.FC = () => {
+    const route = useRoute();
+  const { fee } = route.params as { fee: FeeData };
   const isDarkMode = useColorScheme() === 'dark';
   const styles = createStyles(isDarkMode);
-
+  const commonFees = Array(10).fill(fee.commonFeeSubHeader);
+  // const otherfee=Array(5).fill(fee.otherfee);
   return (
-    <View style={styles.container}>
+       <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerText}>E-Receipt</Text>
       </View>
-      {/* main container */}
-
       <ScrollView contentContainerStyle={styles.scrollContainer}>
-      <View style={styles.maincontainer}>
-        <View style={styles.reciptnamedetail}>
-          <View style={styles.leftView}>
-            <Text style={styles.numbertext}>Receipt No.</Text>
-            <Text style={styles.number}>1011008715628741105551</Text>
-          </View>
-          <View style={styles.divider} />
-          <View style={[styles.rightView,{alignItems: 'flex-end'}]}>
-            <Text style={styles.numbertext}>Payment Date</Text>
-            <Text style={styles.number}>17/09/2022</Text>
-          </View>
-        </View>
-        {/* Image container */}
-        <View style={styles.msucontainer}>
-          <Image source={require('../../assets/images/logo2.png')} style={styles.msulogo} />
-          <Text style={styles.msu}>The Maharaja Sayajirao University, Baroda</Text>
-          <Text style={styles.recipttext}>Student Admission Online Payment E-Receipt 2022-2023</Text>
-        </View>
-        {/* Details container */}
-        <View style={styles.detailsContainer}>
-          <View style={styles.detailItem}>
-            <Text style={styles.detailtextbold}>Academic Year</Text>
-          </View>
-          <View style={styles.detailItem}>
-            <Text style={styles.detailtext}>2022-2023</Text>
-          </View>
-          <View style={styles.detailItem}>
-            <Text style={styles.detailtextbold}>PRN</Text>
-          </View>
-          <View style={styles.detailItem}>
-            <Text style={styles.detailtext}>8022050054</Text>
-          </View>
-        </View>
-        {/*  */}
-        <View style={styles.detailsContainer}>
-          <View style={styles.Course}>
-            <Text style={styles.detailtextbold}>Faculty Name</Text>
-          </View>
-          <View style={styles.detailItem}>
-            <Text style={styles.detailtext}>Faculty of Commerce</Text>
-          </View>
-          <View style={styles.detailItem}>
-            <Text style={styles.detailtextbold}>Name</Text>
-          </View>
-          <View style={styles.detailItem}>
-            <Text style={styles.detailtext}>8022050054_RequestedFile_404.php</Text>
-          </View>
-        </View>
-        {/*  */}
-        <View style={styles.detailsContainer}>
-          <View style={styles.Course}>
-            <Text style={styles.detailtextbold}>Course Name</Text>
-          </View>
-          <View style={styles.detailItem}>
-            <Text style={styles.detailtext}>Master of Commerce : Accounting and Financial Management</Text>
-          </View>
-          <View style={styles.detailItem}>
-            <Text style={styles.detailtextbold}>Mobile No.</Text>
-          </View>
-          <View style={styles.detailItem}>
-            <Text style={styles.detailtext}>9999999999</Text>
-          </View>
-        </View>
-        {/*  */}
-        <View style={styles.detailsContainer}>
-          <View style={styles.Course}>
-            <Text style={styles.detailtextbold}>Course Year</Text>
-          </View>
-          <View style={styles.detailItem}>
-            <Text style={styles.detailtext}>Master of Commerce-I-2022-2023</Text>
-          </View>
-          <View style={styles.detailItem}>
-            <Text style={styles.detailtextbold}>Fees Name</Text>
-          </View>
-          <View style={styles.detailItem}>
-            <Text style={styles.detailtext}>Admission Fee : Admission Fees - Regular - Boys - [MSURP]</Text>
-          </View>
-        </View>
-        {/*  */}
-        <View style={styles.detailsContainer}>
-          <View style={styles.Course}>
-            <Text style={styles.detailtextbold}>Building Name</Text>
-          </View>
-          <View style={styles.detailItem}>
-            <Text style={styles.detailtext}>Deep Ashwinbhai Patel Centre for Post-Graduate Studies-(33824)</Text>
-          </View>
-          <View style={styles.detailItem}>
-            <Text style={styles.detailtextbold}>Installment No.</Text>
-          </View>
-          <View style={styles.detailItem}>
-            <Text style={styles.detailtext}>1</Text>
-          </View>
-        </View>
-        {/*  */}
+        <View style={styles.maincontainer}>
           <View style={styles.reciptnamedetail}>
-          <View style={styles.leftView}>
-            <Text style={styles.numbertext}>Total Amount</Text>
-            <Text style={styles.number}>₹8,360.00</Text>
+            <View style={styles.leftView}>
+              <Text style={styles.numbertext}>Receipt No.</Text>
+              <Text style={styles.number}>{fee.transactionId || 'N/A'}</Text>
+            </View>
+            <View style={styles.divider} />
+            <View style={[styles.rightView, { alignItems: 'flex-end' }]}>
+              <Text style={styles.numbertext}>Payment Date</Text>
+              <Text style={styles.number}>{fee.paymentDate}</Text>
+            </View>
           </View>
-          <View style={styles.divider} />
-          <View style={styles.rightView}>
-            <Text style={styles.numbertext}>Amount Paid</Text>
-            <Text style={styles.number}>₹8,360.00</Text>
+
+          {/* Image container */}
+          <View style={styles.msucontainer}>
+            <Image source={require('../../assets/images/logo2.png')} style={styles.msulogo} />
+            <Text style={styles.msu}>The Maharaja Sayajirao University, Baroda</Text>
+            <Text style={styles.recipttext}>{fee.programmeInstancePartTerm}</Text>
           </View>
-        </View>
+
+          {/* Details container */}
+          <View style={styles.detailsContainer}>
+            <View style={styles.detailItem}>
+              <Text style={styles.detailtextbold}>Academic Year</Text>
+            </View>
+            <View style={styles.detailItem}>
+              <Text style={styles.detailtext}>{fee.year}</Text>
+            </View>
+            <View style={styles.detailItem}>
+              <Text style={styles.detailtextbold}>PRN</Text>
+            </View>
+            <View style={styles.detailItem}>
+              <Text style={styles.detailtext}>{fee.PRN}</Text>
+            </View>
+          </View>
+          {/* Continue displaying other details */}
+          <View style={styles.detailsContainer}>
+            <View style={styles.Course}>
+              <Text style={styles.detailtextbold}>Faculty Name</Text>
+            </View>
+            <View style={styles.detailItem}>
+              <Text style={styles.detailtext}>{fee.facultyName}</Text>
+            </View>
+            <View style={styles.detailItem}>
+              <Text style={styles.detailtextbold}>Name</Text>
+            </View>
+            <View style={styles.detailItem}>
+              <Text style={styles.detailtext}>{fee.name}</Text>
+            </View>
+          </View>
+          {/* Continue displaying other details */}
+          <View style={styles.detailsContainer}>
+            <View style={styles.Course}>
+              <Text style={styles.detailtextbold}>Course Name</Text>
+            </View>
+            <View style={styles.detailItem}>
+              <Text style={styles.detailtext}>{fee.programmeInstancePartTerm}</Text>
+            </View>
+            <View style={styles.detailItem}>
+              <Text style={styles.detailtextbold}>Mobile No..</Text>
+            </View>
+            <View style={styles.detailItem}>
+              <Text style={styles.detailtext}>{fee.mobileNumber}</Text>
+            </View>
+          </View>
+          {/* Continue displaying other details */}
+          <View style={styles.detailsContainer}>
+            <View style={styles.Course}>
+              <Text style={styles.detailtextbold}>Course Year</Text>
+            </View>
+            <View style={styles.detailItem}>
+              <Text style={styles.detailtext}>{fee.courseYear}</Text>
+            </View>
+            <View style={styles.detailItem}>
+              <Text style={styles.detailtextbold}>Fees Name</Text>
+            </View>
+            <View style={styles.detailItem}>
+              <Text style={styles.detailtext}>{fee.feesName}</Text>
+            </View>
+          </View>
+          {/* Continue displaying other details */}
+          <View style={styles.detailsContainer}>
+            <View style={styles.Course}>
+              <Text style={styles.detailtextbold}>Building Name</Text>
+            </View>
+            <View style={styles.detailItem}>
+              <Text style={styles.detailtext}>{fee.buildingName}</Text>
+            </View>
+            <View style={styles.detailItem}>
+              <Text style={styles.detailtextbold}>Installment No.</Text>
+            </View>
+            <View style={styles.detailItem}>
+              <Text style={styles.detailtext}>{fee.installmentNo}</Text>
+            </View>
+          </View>
+
+          {/* Additional details */}
+          <View style={styles.reciptnamedetail}>
+            <View style={styles.leftView}>
+              <Text style={styles.numbertext}>Total Amount</Text>
+              <Text style={styles.number}>{fee.totalAmount}</Text>
+            </View>
+            <View style={styles.divider} />
+            <View style={styles.rightView}>
+              <Text style={styles.numbertext}>Amount Paid</Text>
+              <Text style={styles.number}>{fee.totalAmount}</Text>
+            </View>
+          </View>
         {/*  */}
          <View style={styles.feeTotalsContainer}>
   <View style={styles.feeHeader}>
-    <Text style={[styles.feeHeaderTextBold,{fontSize:14,fontWeight:'bold',}]}>Faculty Name</Text>
+    <Text style={[styles.feeHeaderTextBold,{fontSize:14,fontWeight:'bold',}]}>Fee Head</Text>
   </View>
   <View style={styles.feeItem}>
-    <Text style={[styles.feeHeaderTextBold,{fontSize:14,fontWeight:'bold',}]}>Faculty of Commerce</Text>
+    <Text style={[styles.feeHeaderTextBold,{fontSize:14,fontWeight:'bold',}]}>Fee Sub Head</Text>
   </View>
   <View style={styles.feeItem1}>
-    <Text style={[styles.feeHeaderTextBold,{fontSize:14,fontWeight:'bold',}]}>Name</Text>
+    <Text style={[styles.feeHeaderTextBold,{fontSize:14,fontWeight:'bold',}]}>Amount</Text>
   </View>
 </View>
   {/* amount details by stap */}
@@ -136,240 +141,82 @@ const E_recipt = () => {
     <Text style={styles.feeHeaderTextBold}>Tuition Fees</Text>
   </View>
   <View style={styles.feeItem}>
-    <Text style={styles.feeHeaderTextBold}>Tuition Fees</Text>
+    <Text style={styles.feeHeaderTextBold}>{fee.tuitionSubHeader}</Text>
   </View>
   <View style={styles.feeItem1}>
-    <Text style={styles.feeHeaderTextBold}>₹1,200.00</Text>
+    <Text style={styles.feeHeaderTextBold}>{fee.tuitionFee}</Text>
   </View>
 </View>
-  {/* amount details by stap */}
-          <View style={styles.feeTotalsContainer}>
-  <View style={styles.feeHeader}>
-    <Text style={styles.feeHeaderTextBold}>Common Fees</Text>
-  </View>
-  <View style={styles.feeItem}>
-    <Text style={styles.feeHeaderTextBold}>Fee Sub Head</Text>
-  </View>
-  <View style={styles.feeItem1}>
-    <Text style={styles.feeHeaderTextBold}>₹1,200.00</Text>
-  </View>
-</View>
-  {/* amount details by stap */}
-          <View style={styles.feeTotalsContainer}>
-  <View style={styles.feeHeader}>
-    <Text style={styles.feeHeaderTextBold}>Common Fees</Text>
-  </View>
-  <View style={styles.feeItem}>
-    <Text style={styles.feeHeaderTextBold}>Fee Sub Head</Text>
-  </View>
-  <View style={styles.feeItem1}>
-    <Text style={styles.feeHeaderTextBold}>₹1,200.00</Text>
-  </View>
-</View>
-  {/* amount details by stap */}
-          <View style={styles.feeTotalsContainer}>
-  <View style={styles.feeHeader}>
-    <Text style={styles.feeHeaderTextBold}>Common Fees</Text>
-  </View>
-  <View style={styles.feeItem}>
-    <Text style={styles.feeHeaderTextBold}>Fee Sub Head</Text>
-  </View>
-  <View style={styles.feeItem1}>
-    <Text style={styles.feeHeaderTextBold}>₹1,200.00</Text>
-  </View>
-</View>
-  {/* amount details by stap */}
-          <View style={styles.feeTotalsContainer}>
-  <View style={styles.feeHeader}>
-    <Text style={styles.feeHeaderTextBold}>Common Fees</Text>
-  </View>
-  <View style={styles.feeItem}>
-    <Text style={styles.feeHeaderTextBold}>Fee Sub Head</Text>
-  </View>
-  <View style={styles.feeItem1}>
-    <Text style={styles.feeHeaderTextBold}>₹1,200.00</Text>
-  </View>
-</View>
-  {/* amount details by stap */}
-          <View style={styles.feeTotalsContainer}>
-  <View style={styles.feeHeader}>
-    <Text style={styles.feeHeaderTextBold}>Common Fees</Text>
-  </View>
-  <View style={styles.feeItem}>
-    <Text style={styles.feeHeaderTextBold}>Fee Sub Head</Text>
-  </View>
-  <View style={styles.feeItem1}>
-    <Text style={styles.feeHeaderTextBold}>₹1,200.00</Text>
-  </View>
-</View>
-  {/* amount details by stap */}
-          <View style={styles.feeTotalsContainer}>
-  <View style={styles.feeHeader}>
-    <Text style={styles.feeHeaderTextBold}>Common Fees</Text>
-  </View>
-  <View style={styles.feeItem}>
-    <Text style={styles.feeHeaderTextBold}>Fee Sub Head</Text>
-  </View>
-  <View style={styles.feeItem1}>
-    <Text style={styles.feeHeaderTextBold}>₹1,200.00</Text>
-  </View>
-</View>
-  {/* amount details by stap */}
-          <View style={styles.feeTotalsContainer}>
-  <View style={styles.feeHeader}>
-    <Text style={styles.feeHeaderTextBold}>Common Fees</Text>
-  </View>
-  <View style={styles.feeItem}>
-    <Text style={styles.feeHeaderTextBold}>Fee Sub Head</Text>
-  </View>
-  <View style={styles.feeItem1}>
-    <Text style={styles.feeHeaderTextBold}>₹1,200.00</Text>
-  </View>
-</View>
-  {/* amount details by stap */}
-          <View style={styles.feeTotalsContainer}>
-  <View style={styles.feeHeader}>
-    <Text style={styles.feeHeaderTextBold}>Common Fees</Text>
-  </View>
-  <View style={styles.feeItem}>
-    <Text style={styles.feeHeaderTextBold}>Fee Sub Head</Text>
-  </View>
-  <View style={styles.feeItem1}>
-    <Text style={styles.feeHeaderTextBold}>₹1,200.00</Text>
-  </View>
-</View>
-  {/* amount details by stap */}
-          <View style={styles.feeTotalsContainer}>
-  <View style={styles.feeHeader}>
-    <Text style={styles.feeHeaderTextBold}>Common Fees</Text>
-  </View>
-  <View style={styles.feeItem}>
-    <Text style={styles.feeHeaderTextBold}>Fee Sub Head</Text>
-  </View>
-  <View style={styles.feeItem1}>
-    <Text style={styles.feeHeaderTextBold}>₹1,200.00</Text>
-  </View>
-</View>
-  {/* amount details by stap */}
-          <View style={styles.feeTotalsContainer}>
-  <View style={styles.feeHeader}>
-    <Text style={styles.feeHeaderTextBold}>Common Fees</Text>
-  </View>
-  <View style={styles.feeItem}>
-    <Text style={styles.feeHeaderTextBold}>Fee Sub Head</Text>
-  </View>
-  <View style={styles.feeItem1}>
-    <Text style={styles.feeHeaderTextBold}>₹1,200.00</Text>
-  </View>
-</View>
-  {/* amount details by stap */}
+     {commonFees.map((header, index) => (
+            <View key={index} style={styles.feeTotalsContainer}>
+              <View style={styles.feeHeader}>
+                <Text style={styles.feeHeaderTextBold}>Common Fee</Text>
+              </View>
+              <View style={styles.feeItem}>
+                <Text style={styles.feeHeaderTextBold}>{fee.commonFeeSubHeader}</Text>
+              </View>
+              <View style={styles.feeItem1}>
+                <Text style={styles.feeHeaderTextBold}>{fee.commonFee}</Text>
+              </View>
+            </View>
+          ))}
           <View style={styles.feeTotalsContainer}>
   <View style={styles.feeHeader}>
     <Text style={styles.feeHeaderTextBold}>Other Fees</Text>
   </View>
   <View style={styles.feeItem}>
-    <Text style={styles.feeHeaderTextBold}>Fee Sub Head</Text>
+    <Text style={styles.feeHeaderTextBold}>{fee.commonFeeSubHeader}</Text>
   </View>
   <View style={styles.feeItem1}>
-    <Text style={styles.feeHeaderTextBold}>₹1,200.00</Text>
+    <Text style={styles.feeHeaderTextBold}>{fee.commonFee}</Text>
   </View>
 </View>
-  {/* amount details by stap */}
-          <View style={styles.feeTotalsContainer}>
-  <View style={styles.feeHeader}>
-    <Text style={styles.feeHeaderTextBold}>Other Fees</Text>
-  </View>
-  <View style={styles.feeItem}>
-    <Text style={styles.feeHeaderTextBold}>Fee Sub Head</Text>
-  </View>
-  <View style={styles.feeItem1}>
-    <Text style={styles.feeHeaderTextBold}>₹1,200.00</Text>
-  </View>
-</View>
-  {/* amount details by stap */}
-          <View style={styles.feeTotalsContainer}>
-  <View style={styles.feeHeader}>
-    <Text style={styles.feeHeaderTextBold}>Other Fees</Text>
-  </View>
-  <View style={styles.feeItem}>
-    <Text style={styles.feeHeaderTextBold}>Fee Sub Head</Text>
-  </View>
-  <View style={styles.feeItem1}>
-    <Text style={styles.feeHeaderTextBold}>₹1,200.00</Text>
-  </View>
-</View>
-  {/* amount details by stap */}
-          <View style={styles.feeTotalsContainer}>
-  <View style={styles.feeHeader}>
-    <Text style={styles.feeHeaderTextBold}>Other Fees</Text>
-  </View>
-  <View style={styles.feeItem}>
-    <Text style={styles.feeHeaderTextBold}>Fee Sub Head</Text>
-  </View>
-  <View style={styles.feeItem1}>
-    <Text style={styles.feeHeaderTextBold}>₹1,200.00</Text>
-  </View>
-</View>
-  {/* amount details by stap */}
-          <View style={styles.feeTotalsContainer}>
-  <View style={styles.feeHeader}>
-    <Text style={styles.feeHeaderTextBold}>Other Fees</Text>
-  </View>
-  <View style={styles.feeItem}>
-    <Text style={styles.feeHeaderTextBold}>Fee Sub Head</Text>
-  </View>
-  <View style={styles.feeItem1}>
-    <Text style={styles.feeHeaderTextBold}>₹1,200.00</Text>
-  </View>
-</View>
-  {/* amount details by stap */}
           <View style={styles.feeTotalsContainer}>
   <View style={styles.feeHeader}>
     <Text style={styles.feeHeaderTextBold}>Fine/Late Fees</Text>
   </View>
   <View style={styles.feeItem}>
-    <Text style={styles.feeHeaderTextBold}>Fee Sub Head</Text>
+    <Text style={styles.feeHeaderTextBold}>{fee.commonFeeSubHeader}</Text>
   </View>
   <View style={styles.feeItem1}>
-    <Text style={styles.feeHeaderTextBold}>₹1,200.00</Text>
+    <Text style={styles.feeHeaderTextBold}>{fee.commonFee}</Text>
   </View>
 </View>
-  {/* amount details by stap */}
           <View style={styles.feeTotalsContainer}>
   <View style={styles.feeHeader}>
     <Text style={styles.feeHeaderTextBold}>Examination Fees</Text>
   </View>
   <View style={styles.feeItem}>
-    <Text style={styles.feeHeaderTextBold}>Fee Sub Head</Text>
+    <Text style={styles.feeHeaderTextBold}>{fee.commonFeeSubHeader}</Text>
   </View>
   <View style={styles.feeItem1}>
-    <Text style={styles.feeHeaderTextBold}>₹1,200.00</Text>
+    <Text style={styles.feeHeaderTextBold}>{fee.commonFee}</Text>
   </View>
 </View>
-  {/* amount details by stap */}
           <View style={styles.feeTotalsContainer}>
   <View style={styles.feeHeader}>
     <Text style={styles.feeHeaderTextBold}>Foreign Students Assistance Fees</Text>
   </View>
   <View style={styles.feeItem}>
-    <Text style={styles.feeHeaderTextBold}>Fee Sub Head</Text>
+    <Text style={styles.feeHeaderTextBold}>{fee.commonFeeSubHeader}</Text>
   </View>
   <View style={styles.feeItem1}>
-    <Text style={styles.feeHeaderTextBold}>₹1,200.00</Text>
+    <Text style={styles.feeHeaderTextBold}>{fee.commonFee}</Text>
   </View>
 </View>
-  {/* amount details by stap */}
           <View style={styles.feeTotalsContainer}>
   <View style={styles.feeHeader}>
     <Text style={styles.feeHeaderTextBold}>Foreign Students Coordination Fees (ICCR)</Text>
   </View>
   <View style={styles.feeItem}>
-    <Text style={styles.feeHeaderTextBold}>Fee Sub Head</Text>
+    <Text style={styles.feeHeaderTextBold}>{fee.commonFeeSubHeader}</Text>
   </View>
   <View style={styles.feeItem1}>
-    <Text style={styles.feeHeaderTextBold}>₹1,200.00</Text>
+    <Text style={styles.feeHeaderTextBold}>{fee.commonFee}</Text>
   </View>
 </View>
+  {/* amount details by stap */}
+
   {/* amount details by stap */}
     <View style={styles.reciptnamedetail}>
           <View style={styles.leftView}>
@@ -377,7 +224,7 @@ const E_recipt = () => {
           </View>
           <View style={styles.divider} />
           <View style={styles.rightView}>
-            <Text style={styles.numbertext}>₹8,360.00</Text>
+            <Text style={styles.numbertext}>{fee.totalAmount}</Text>
           </View>
         </View>
       </View>

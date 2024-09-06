@@ -20,6 +20,7 @@ import RequestStatus from './Screens/Request/RequestStatus';
 import E_receipt from './Screens/Fee/E_receipt';
 import Viewresult from './Screens/Result/Viewresult';
 import ResultPrint from './Screens/Result/ResultPrint';
+import NewRequest from './Screens/Request/NewRequest';
 
 // Enable react-native-screens to improve performance
 enableScreens();
@@ -42,6 +43,7 @@ type RootStackParamList = {
   E_receipt:undefined;
   Viewresult:undefined;
   ResultPrint:undefined;
+  NewRequest:undefined;
 };
 
 // Create a stack navigator with the defined type
@@ -129,6 +131,11 @@ const App: React.FC = () => {
           <Stack.Screen
           name="ResultPrint"
           component={ResultPrint}
+          options={{ headerShown: false }}
+        />
+          <Stack.Screen
+          name="NewRequest"
+          component={NewRequest}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

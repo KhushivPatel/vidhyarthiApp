@@ -1,7 +1,18 @@
-import { View, Text, useColorScheme, TouchableOpacity, Image, ScrollView, StyleSheet, ViewStyle, TextStyle, ImageStyle } from 'react-native';
+/* eslint-disable react-native/no-inline-styles */
+import { View, Text, useColorScheme, ScrollView, StyleSheet, ViewStyle, TextStyle, Image } from 'react-native';
 import React from 'react';
+import { RouteProp, useRoute } from '@react-navigation/native';
+
+type RootStackParamList = {
+  Viewresult: { student: any }; // Define the route parameters
+};
+
+type ViewResultRouteProp = RouteProp<RootStackParamList, 'Viewresult'>;
 
 const Viewresult = () => {
+  const route = useRoute<ViewResultRouteProp>();
+  const { student } = route.params;
+
   const isDarkMode = useColorScheme() === 'dark';
   const styles = createStyles(isDarkMode);
 
@@ -15,103 +26,133 @@ const Viewresult = () => {
         <View style={styles.mainContent}>
           <View style={styles.textContainerRight}>
             <Text style={[styles.textRight, styles.boldText, styles.smallText]}>Name</Text>
-            <Text style={styles.textRight}>Pratik Maheshkumar Damor</Text>
+            <Text style={styles.textRight}>{student.Name}</Text>
           </View>
 
           <View style={styles.divider} />
 
-          {/* Individual rows */}
           <View style={styles.textRow}>
             <Text style={styles.textLeft}>PRN</Text>
-            <Text style={styles.textRight}>8021025147</Text>
+            <Text style={styles.textRight}>{student.PRN}</Text>
           </View>
+
           <View style={styles.textRow}>
             <Text style={styles.textLeft}>Faculty</Text>
-            <Text style={styles.textRight}>Faculty of Fine Arts</Text>
+            <Text style={styles.textRight}>{student.Faculty}</Text>
           </View>
+
           <View style={styles.textRow}>
             <Text style={styles.textLeft}>Specialization</Text>
-            <Text style={styles.textRight}>Painting</Text>
+            <Text style={styles.textRight}>{student.Specialization}</Text>
           </View>
+
           <View style={styles.textRow}>
             <Text style={styles.textLeft}>Seat Number</Text>
-            <Text style={styles.textRight}>139405</Text>
+            <Text style={styles.textRight}>{student.SeatNumber}</Text>
           </View>
+
           <View style={styles.textRow}>
             <Text style={styles.textLeft}>Mother Name</Text>
-            <Text style={styles.textRight}>Maryben</Text>
+            <Text style={styles.textRight}>{student.MotherName}</Text>
           </View>
         </View>
-        {/* result */}
+
         <View style={styles.result}>
-{/* msu logo and title */}
-<View style={styles.msutitle}>
-    <Image source={require('../../assets/images/msu_logo.png')}  style={styles.logo}/>
-    <View style={styles.msutext}>
-
-<Text style={styles.text}>The Maharaja Sayajirao University, Baroda</Text>
-<Text style={styles.subtext}>Fatehgunj,Vadodara-390002,Gujarat(India)</Text>
-    </View>
-</View>
-{/* text */}
-<View style={styles.examdatetext}>
-
-<Text style={{ fontSize: 13, color: 'black' ,alignItems:'center',
-        textAlign:'center',}}>
-  Statement of Grade for First Semester of MVA-I [Master of Visual Arts] Examination : November-2021
-</Text>
-
-</View>
-{/* result marks */}
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScrollView}>
-        <View style={styles.horizontalContainer}>
-          <View style={styles.columnContainer}>
-            <Text style={styles.headerText}>Course Code</Text>
-            <Text style={styles.headerText}>Course Name</Text>
-            <Text style={styles.headerText}>AM</Text>
-
-            {/* UA Section */}
-            <View style={styles.sectionContainer}>
-              <Text style={styles.mainText}>UA</Text>
-              <View style={styles.subTextContainer}>
-                <Text style={styles.subText}>Max</Text>
-                <Text style={styles.subText}>Min</Text>
-                <Text style={styles.subText}>Obt</Text>
-              </View>
+          {/* MSU Logo and Title */}
+          <View style={styles.msutitle}>
+            <Image source={require('../../assets/images/msu_logo.png')} style={styles.logo} />
+            <View style={styles.msutext}>
+              <Text style={styles.text}>The Maharaja Sayajirao University, Baroda</Text>
+              <Text style={styles.subtext}>Fatehgunj, Vadodara-390002, Gujarat (India)</Text>
             </View>
-
-            {/* IA Section */}
-            <View style={styles.sectionContainer}>
-              <Text style={styles.mainText}>IA</Text>
-              <View style={styles.subTextContainer}>
-                <Text style={styles.subText}>Max</Text>
-                <Text style={styles.subText}>Min</Text>
-                <Text style={styles.subText}>Obt</Text>
-              </View>
-            </View>
-
-            {/* Another UA Section */}
-            <View style={styles.sectionContainer}>
-              <Text style={styles.mainText}>UA</Text>
-              <View style={styles.subTextContainer}>
-                <Text style={styles.subText}>Max</Text>
-                <Text style={styles.subText}>Min</Text>
-                <Text style={styles.subText}>Obt</Text>
-              </View>
-            </View>
-
-            <Text style={styles.headerText}>Sts</Text>
-            <Text style={styles.headerText}>Rmk</Text>
           </View>
-        </View>
-      </ScrollView>
+
+          {/* Exam Date Text */}
+          <View style={styles.examdatetext}>
+            <Text style={{ fontSize: 13, color: 'black', textAlign: 'center' }}>
+              {student.semester}
+            </Text>
+          </View>
+
+          {/* Result Marks */}
+          <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScrollView}>
+            <View style={styles.verticalcontainer}>
+
+            <View style={styles.horizontalContainer}>
+              <View style={styles.columnContainer}>
+                <View style={styles.course}>
+                  <Text style={styles.ResultText}>Course Code</Text>
+                  <Text style={styles.ResultText}>Course Name</Text>
+                  <Text style={styles.ResultText}>AM</Text>
+                  <View>
+                  <Text style={styles.ResultText}>UA</Text>
+                  <View style={styles.subTextContainer}>
+                    <Text style={styles.subText}>Min</Text>
+                    <Text style={styles.subText}>Max</Text>
+                    <Text style={styles.subText}>Total</Text>
+                  </View>
+                  </View>
+                  <View>
+                  <Text style={styles.ResultText}>UA</Text>
+                  <View style={styles.subTextContainer}>
+                    <Text style={styles.subText}>Min</Text>
+                    <Text style={styles.subText}>Max</Text>
+                    <Text style={styles.subText}>Total</Text>
+                  </View>
+                  </View>
+              <View>
+                  <Text style={styles.ResultText}>UA</Text>
+                  <View style={styles.subTextContainer}>
+                    <Text style={styles.subText}>Min</Text>
+                    <Text style={styles.subText}>Max</Text>
+                    <Text style={styles.subText}>Total</Text>
+                  </View>
+                  </View>
+                  <Text style={styles.ResultText}>Sts</Text>
+                  <Text style={styles.ResultText}>Rmk</Text>
+                </View>
+               {/* <View style={styles.columnContainer}>
+                  <Text style={styles.ResultText}>hifhdkjsfhjhdjfhkjshjhdsj</Text>
+                </View> */}
+              </View>
+            </View>
+            <View style={styles.horizontalContainer}>
+              <View style={styles.columnContainer}>
+                <View style={styles.course}>
+                  <Text style={styles.ResultText}>Course Code</Text>
+                  <Text style={styles.ResultText}>Course Name</Text>
+                  <Text style={styles.ResultText}>AM</Text>
+                  <View style={styles.subTextContainer}>
+                    <Text style={styles.subText}>Min</Text>
+                    <Text style={styles.subText}>Max</Text>
+                    <Text style={styles.subText}>Total</Text>
+                  </View>
+                  <View style={styles.subTextContainer}>
+                    <Text style={styles.subText}>Min</Text>
+                    <Text style={styles.subText}>Max</Text>
+                    <Text style={styles.subText}>Total</Text>
+                  </View>
+                  <View style={styles.subTextContainer}>
+                    <Text style={styles.subText}>Min</Text>
+                    <Text style={styles.subText}>Max</Text>
+                    <Text style={styles.subText}>Total</Text>
+                  </View>
+                  <Text style={styles.ResultText}>Sts</Text>
+                  <Text style={styles.ResultText}>Rmk</Text>
+                </View>
+               {/* <View style={styles.columnContainer}>
+                  <Text style={styles.ResultText}>hifhdkjsfhjhdjfhkjshjhdsj</Text>
+                </View> */}
+              </View>
+            </View>
+            </View>
+          </ScrollView>
         </View>
       </ScrollView>
     </View>
   );
 };
 
-// Define styles
 const createStyles = (isDarkMode: boolean) =>
   StyleSheet.create({
     container: {
@@ -131,13 +172,9 @@ const createStyles = (isDarkMode: boolean) =>
       fontWeight: 'bold',
       fontSize: 18,
     } as TextStyle,
-    headerImage: {
-      width: 16,
-      height: 16,
-      resizeMode: 'contain',
-    } as ImageStyle,
     scrollView: {
       flexGrow: 1,
+      paddingBottom: 20,
     } as ViewStyle,
     mainContent: {
       marginVertical: 14,
@@ -154,13 +191,19 @@ const createStyles = (isDarkMode: boolean) =>
       fontSize: 14,
       color: isDarkMode ? '#fff' : '#000',
       marginBottom: 4,
-      flex:2,
+      flex: 2,
       textAlign: 'right',
     } as TextStyle,
     divider: {
       height: 2,
       backgroundColor: isDarkMode ? '#fff' : '#000',
       marginVertical: 10,
+    } as ViewStyle,
+    dividerNoGap: {
+      width: '100%',
+      height: 3,
+      backgroundColor: '#000',
+      marginVertical: 0, // Removed any vertical margin to avoid gaps
     } as ViewStyle,
     textRow: {
       flexDirection: 'row',
@@ -173,103 +216,92 @@ const createStyles = (isDarkMode: boolean) =>
     } as ViewStyle,
     textLeft: {
       fontSize: 16,
-      flex:2,
+      flex: 2,
       color: isDarkMode ? '#fff' : '#000',
       fontWeight: 'bold',
     } as TextStyle,
-    detailContainer: {
-      padding: 5,
-    } as ViewStyle,
     boldText: {
       fontWeight: 'bold',
     } as TextStyle,
     smallText: {
       fontSize: 12,
     } as TextStyle,
-    result:{
-        borderColor:'#000',
-        borderWidth:1,
-        margin:14,
-    },
-msutitle:{
-   flexDirection: 'row',
+    result: {
+      borderColor: '#000',
+      borderWidth: 1,
+      margin: 14,
+    } as ViewStyle,
+    msutitle: {
+      flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
-       padding:10,
-},
-    logo:{
-        height:55,
-        width:55,
+      padding: 10,
+    } as ViewStyle,
+    logo: {
+      height: 55,
+      width: 55,
     },
-    msutext:{
-        padding:10,
-        alignItems:'center',
+    msutext: {
+      padding: 10,
+      alignItems: 'center',
     },
-    text:{
-        fontSize:14,
-        color:'#000',
+    text: {
+      fontSize: 14,
+      color: '#000',
     },
-    subtext:{
-         fontWeight:'bold',
-              fontSize:11,
-        color:'#000',
+    subtext: {
+      fontWeight: 'bold',
+      fontSize: 11,
+      color: '#000',
     },
-    examdatetext:{
-        borderWidth:1,
-        borderTopColor:'#000',
-        borderBottomColor:'#000',
-        borderRightColor:'#fff',
-        borderLeftColor:'#fff',
-        justifyContent:'center',
-        alignItems:'center',
-        textAlign:'center',
-      paddingRight:11,
-      paddingLeft:11,
-      paddingTop:10,
-      paddingBottom:10,
+    examdatetext: {
+      borderWidth: 1,
+      borderColor: '#000',
+      justifyContent: 'center',
+      alignItems: 'center',
+      paddingVertical: 10,
     },
-  horizontalScrollView: {
-    flexGrow: 1,
-  } as ViewStyle,
-  horizontalContainer: {
-    flexDirection: 'row',
-  } as ViewStyle,
-  columnContainer: {
-    flexDirection: 'row',
-    flexWrap: 'nowrap',
-  } as ViewStyle,
-  headerText: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    marginRight: 10,
-    textAlign: 'center',
-      borderRightWidth: 1,
-    borderColor: '#000',
-  } as TextStyle,
-  sectionContainer: {
-  } as ViewStyle,
-  mainText: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    textAlign: 'center',
-     borderRightWidth: 1,
-    borderColor: '#000',
-    padding:10,
-  } as TextStyle,
-  subTextContainer: {
-    borderRightWidth: 1,
-    borderTopWidth: 1,
-    borderColor: '#000',
-    // paddingLeft: 5,
+    horizontalScrollView: {
+      flexGrow: 1,
+    } as ViewStyle,
+    verticalcontainer:{
+      flexDirection:'column',
+    },
+    horizontalContainer: {
+      flexDirection: 'row',
+    } as ViewStyle,
+    columnContainer: {
+      flexDirection: 'row',
+      flexWrap: 'nowrap',
+      // marginBottom:10,
+    } as ViewStyle,
+    ResultText: {
+      fontSize: 14,
+      fontWeight: 'bold',
+      textAlign: 'center',
+      paddingHorizontal: 20,
+      borderColor:'#000',
+      borderBottomWidth:1,
+      borderRightWidth:1,
+    } as TextStyle,
+    course: {
        flexDirection: 'row',
-    flexWrap: 'nowrap',
-  } as ViewStyle,
-  subText: {
-    fontSize: 12,
-    textAlign: 'center',
-    marginBottom: 2,
-      borderLeftWidth: 1,
-    borderColor: '#000',
-  } as TextStyle,
-});
+    } as ViewStyle,
+    subTextContainer: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+         borderColor:'#000',
+      borderBottomWidth:1,
+          // borderRightWidth:1,
+    } as ViewStyle,
+    subText: {
+    fontSize: 14,
+      fontWeight: 'bold',
+      textAlign: 'center',
+      paddingHorizontal: 20,
+           borderColor:'#000',
+          borderRightWidth:1,
+    } as TextStyle,
+  });
+
 export default Viewresult;
