@@ -76,8 +76,6 @@ const Viewresult = () => {
 
           {/* Result Marks */}
           <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScrollView}>
-            <View style={styles.verticalcontainer}>
-
             <View style={styles.horizontalContainer}>
               <View style={styles.columnContainer}>
                 <View style={styles.course}>
@@ -111,40 +109,7 @@ const Viewresult = () => {
                   <Text style={styles.ResultText}>Sts</Text>
                   <Text style={styles.ResultText}>Rmk</Text>
                 </View>
-               {/* <View style={styles.columnContainer}>
-                  <Text style={styles.ResultText}>hifhdkjsfhjhdjfhkjshjhdsj</Text>
-                </View> */}
               </View>
-            </View>
-            <View style={styles.horizontalContainer}>
-              <View style={styles.columnContainer}>
-                <View style={styles.course}>
-                  <Text style={styles.ResultText}>Course Code</Text>
-                  <Text style={styles.ResultText}>Course Name</Text>
-                  <Text style={styles.ResultText}>AM</Text>
-                  <View style={styles.subTextContainer}>
-                    <Text style={styles.subText}>Min</Text>
-                    <Text style={styles.subText}>Max</Text>
-                    <Text style={styles.subText}>Total</Text>
-                  </View>
-                  <View style={styles.subTextContainer}>
-                    <Text style={styles.subText}>Min</Text>
-                    <Text style={styles.subText}>Max</Text>
-                    <Text style={styles.subText}>Total</Text>
-                  </View>
-                  <View style={styles.subTextContainer}>
-                    <Text style={styles.subText}>Min</Text>
-                    <Text style={styles.subText}>Max</Text>
-                    <Text style={styles.subText}>Total</Text>
-                  </View>
-                  <Text style={styles.ResultText}>Sts</Text>
-                  <Text style={styles.ResultText}>Rmk</Text>
-                </View>
-               {/* <View style={styles.columnContainer}>
-                  <Text style={styles.ResultText}>hifhdkjsfhjhdjfhkjshjhdsj</Text>
-                </View> */}
-              </View>
-            </View>
             </View>
           </ScrollView>
         </View>

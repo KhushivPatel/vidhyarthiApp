@@ -1,21 +1,25 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ViewStyle, TextStyle } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, Image } from 'react-native';
+import NotiData from '../TempData/NotiData'; // Import the data
 
-// Define the type for a notification item
+// Define the type for a notification item (matches NotiData)
 interface Notification {
   id: number;
   title: string;
   description: string;
-  isNew: boolean;
+    date:string;
 }
 
 const NotificationScreen: React.FC = () => {
-  const [notifications, setNotifications] = useState<Notification[]>([
-    { id: 1, title: 'Notification 1', description: 'This is the first notification', isNew: true },
-    { id: 2, title: 'Notification 2', description: 'This is the second notification', isNew: true },
-    { id: 3, title: 'Notification 3', description: 'This is the third notification', isNew: true },
-    // Add more notifications if needed
-  ]);
+  // Use NotiData to set the initial state of notifications
+  const [notifications, setNotifications] = useState<Notification[]>(
+    NotiData.map((item, index) => ({
+      id: index + 1,
+      title: item.title,
+      description: item.subtitle,
+      date: item.date,
+    }))
+  );
 
   // Function to mark all notifications as read
   const markAsRead = () => {
@@ -27,18 +31,38 @@ const NotificationScreen: React.FC = () => {
       {/* Header */}
       <View style={styles.header}>
         <Text style={styles.headerText}>Notification</Text>
-        <Text style={styles.newHeaderText}>NEW</Text>
       </View>
 
       <View style={styles.notificationList}>
+         <View style={styles.textRow}>
+                <Image
+                  source={require('../../assets/images/msunoti.png')}
+                  style={styles.notificationImage} // Circular image style
+                />
+                <View style={styles.notificationTextContainer}>
+                  <Text style={styles.notificationTitle}>Orientation for academic year 2024 on 24/12/2023 </Text>
+                  <Text style={styles.notificationDescription}>Orientation for academic year 2024 on 24/12/2023 Orientation for academic year 2024 on 24/12/2023  Orientation for academic year 2024 on 24/12/2023 Orientation for </Text>
+                </View>
+              </View>
         {/* If there are notifications, display them */}
         {notifications.length > 0 ? (
           notifications.map((notification) => (
             <View key={notification.id} style={styles.notificationContainer}>
-              <View style={styles.notificationContent}>
-                <Text style={styles.notificationTitle}>{notification.title}</Text>
+              <View style={styles.textRow}>
+      
+                <View style={styles.notificationTextContainer}>
+                  <View style={styles.padding}>
+
+                  <Text style={styles.notificationTitle}>{notification.title}</Text>
+                  <Text style={styles.notificationDescription}>{notification.description}</Text>
+                  </View>
+                <View style={styles.datecontainer}>
+                  <Text style={styles.datetext}>
+                   {notification.date}
+                  </Text>
+                </View>
+                </View>
               </View>
-              <Text style={styles.notificationDescription}>{notification.description}</Text>
             </View>
           ))
         ) : (
@@ -79,24 +103,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 18,
   } as TextStyle,
-  newHeaderText: {
-    color: '#fff',
-    fontSize: 12,
-    fontWeight: 'bold',
-    backgroundColor: '#FF0000',
-    padding: 6,
-    borderRadius: 6,
-  } as TextStyle,
   notificationList: {
     padding: 20,
   } as ViewStyle,
   notificationContainer: {
     marginBottom: 16,
-  } as ViewStyle,
-  notificationContent: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    
   } as ViewStyle,
   notificationTitle: {
     color: '#000',
@@ -106,7 +118,7 @@ const styles = StyleSheet.create({
   notificationDescription: {
     fontSize: 14,
     color: '#000',
-    marginVertical: 8,
+    marginTop: 4,
   } as TextStyle,
   noNotificationsText: {
     fontSize: 16,
@@ -125,6 +137,36 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginTop: 20,
   } as TextStyle,
+  textRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#DCEAFF',
+    // padding: 12,
+    borderRadius: 10,
+    marginBottom: 10,
+  } as ViewStyle,
+  notificationImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 50, // Circular shape
+    marginRight: 10,
+  } as ViewStyle,
+  notificationTextContainer: {
+    flex: 1, // Allow text to take up remaining space
+  } as ViewStyle,
+  datecontainer:{
+        backgroundColor: '#B9D5FF',
+            borderBottomRightRadius: 10,
+            borderBottomLeftRadius: 10,
+                padding:10,
+  },
+  padding:{
+    padding:10,
+  },
+  datetext:{
+    color:'#002E74',
+        fontWeight: 'bold',
+  },
 });
 
 export default NotificationScreen;

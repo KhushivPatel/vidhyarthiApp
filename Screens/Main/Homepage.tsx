@@ -2,13 +2,14 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView, useColorScheme } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+  import { sampleUserData } from '../TempData/UserData';
 
 const HomePage: React.FC = () => {
     const navigation = useNavigation();
 
-  const goToProfile = () => {
-    navigation.navigate('ProfileScreen');
-  };
+ const goToProfile = (user: any) => {
+  navigation.navigate('ProfileScreen', { user });
+};
     const goToEducation = () => {
     navigation.navigate('EducationScreen'); // Replace 'EducationScreen' with your actual route name
   };
@@ -67,6 +68,9 @@ const HomePage: React.FC = () => {
         </View>
       </View>
 {/* details and menu part */}
+{sampleUserData.map((user, index) => (
+
+
       <View style={isDarkMode ? styles.homestyleDark : styles.homestyle}>
         {/*  profile part*/}
         <View style={isDarkMode ? styles.mainContentDark : styles.mainContent}>
@@ -76,13 +80,13 @@ const HomePage: React.FC = () => {
                 Hello 👋
               </Text>
               <Text style={[styles.textItem, { fontSize: 14, color: '#000', fontWeight: 'bold' }]}>
-                Vidhi Shah
+                {user.name  }
               </Text>
               <Text style={[styles.textItem, { fontSize: 14, color: '#6B6B6B', fontWeight: 'bold' }]}>
-                vidhishah@gmail.com
+              {user.emailId}
               </Text>
             </View>
-            <TouchableOpacity style={isDarkMode ? styles.arrowButtonDark : styles.arrowButton} onPress={goToProfile}>
+            <TouchableOpacity style={isDarkMode ? styles.arrowButtonDark : styles.arrowButton} onPress={() => goToProfile(user)}>
         <Image  source={require('../../assets/icons/arrow.png')} style={isDarkMode ? styles.arrowDark : styles.arrow} />
       </TouchableOpacity>
           </View>
@@ -260,6 +264,8 @@ const HomePage: React.FC = () => {
         {/* msu text */}
   <Text style={isDarkMode ? styles.logotextDark : styles.logotext} >The Maharaja Sayajirao University - Baroda</Text>
       </View>
+))}
+
     </ScrollView>
   );
 };
