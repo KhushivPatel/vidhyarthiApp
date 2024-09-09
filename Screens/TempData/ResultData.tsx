@@ -6,30 +6,46 @@ export interface ResultDataType {
   semester: string;
   examEvent: string;
   resultStatus: string;
+  PRN?: string; // Optional field if not always present
+  Name?: string;
+  Faculty?: string;
+  Specialization?: string;
+  SeatNumber?: string;
+  MotherName?: string;
+  coursecode?: string;
+  coursename?: string;
+  time?: string;
+  maxmin?: string;
+  total?: number;
+  sts?: string;
+  rank?: string;
+  fild?: string; // Add the new field here
+  fildname?: string;
 }
 
 const resultData: ResultDataType[] = [
   {
     id: 1,
     facultyName: 'Faculty of Fine Arts',
-    semester: 'First Semester of MCOM-I-Accounting and Financial Management-2022-2023',
+    semester:
+      'First Semester of MCOM-I-Accounting and Financial Management-2022-2023',
     examEvent: 'November-2022',
     resultStatus: 'Complete',
-    // viewresult
     PRN: '8021025147',
     Name: 'Pratik Maheshkumar Damor',
     Faculty: 'Faculty of Fine Arts',
     Specialization: 'Painting',
     SeatNumber: '139405',
     MotherName: 'Maryben',
-    // result marks
-    coursecode:'AHA2216',
-    coursename:'Philosophy of Art-II',
-    time:'2',
-    maxmin:'d',
-    total:1212,
-    sts:'E,C',
-    rank:'E,C',
+    coursecode: 'AHA2216',
+    coursename: 'Philosophy of Art-II',
+    time: '2',
+    maxmin: 'd',
+    total: 1212,
+    sts: 'E,C',
+    rank: 'E,C',
+    fild: 'First Semester of MCOM-I-Accounting',
+    fildname: 'First Semester of F.Y. Diploma',
   },
   {
     id: 2,
@@ -43,14 +59,15 @@ const resultData: ResultDataType[] = [
     Specialization: 'Painting',
     SeatNumber: '139405',
     MotherName: 'Maryben',
-        // result marks
-    coursecode:'AHA2216',
-    coursename:'Philosophy of Art-II',
-    time:'2',
-    maxmin:'d',
-    total:1212,
-    sts:'E,C',
-    rank:'E,C',
+    coursecode: 'AHA2216',
+    coursename: 'Philosophy of Art-II',
+    time: '2',
+    maxmin: 'd',
+    total: 1212,
+    sts: 'E,C',
+    rank: 'E,C',
+    fild: 'Second Semester of BTECH-Civil Engineering',
+    fildname: 'First Semester of F.Y. Diploma',
   },
   // Add more records as needed
 ];

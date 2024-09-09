@@ -1,11 +1,20 @@
-import { View, Text, Image, useColorScheme, ScrollView, StyleSheet, ViewStyle, TextStyle } from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  useColorScheme,
+  ScrollView,
+  StyleSheet,
+  ViewStyle,
+  TextStyle,
+} from 'react-native';
 import React from 'react';
 
 type ResultPrintProps = {
   student: Student;
 };
 
-const ResultPrint: React.FC<ResultPrintProps> = ({ student }) => {
+const ResultPrint: React.FC<ResultPrintProps> = ({student}) => {
   const isDarkMode = useColorScheme() === 'dark';
   const styles = createStyles(isDarkMode);
 
@@ -13,22 +22,33 @@ const ResultPrint: React.FC<ResultPrintProps> = ({ student }) => {
     <View style={styles.result}>
       {/* MSU Logo and Title */}
       <View style={styles.msutitle}>
-        <Image source={require('../../assets/images/msu_logo.png')} style={styles.logo} />
+        <Image
+          source={require('../../assets/images/msu_logo.png')}
+          style={styles.logo}
+        />
         <View style={styles.msutext}>
-          <Text style={styles.text}>The Maharaja Sayajirao University, Baroda</Text>
-          <Text style={styles.subtext}>Fatehgunj, Vadodara-390002, GujaIndia)rat (</Text>
+          <Text style={styles.text}>
+            The Maharaja Sayajirao University, Baroda
+          </Text>
+          <Text style={styles.subtext}>
+            Fatehgunj, Vadodara-390002, GujaIndia)rat (
+          </Text>
         </View>
       </View>
 
       {/* Exam Date Text */}
       <View style={styles.examdatetext}>
-        <Text style={{ fontSize: 13, color: 'black', textAlign: 'center' }}>
-          Statement of Grade for First Semester of MVA-I [Master of Visual Arts] Examination: November-2021
+        <Text style={{fontSize: 13, color: 'black', textAlign: 'center'}}>
+          Statement of Grade for First Semester of MVA-I [Master of Visual Arts]
+          Examination: November-2021
         </Text>
       </View>
 
       {/* Result Marks */}
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScrollView}>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={styles.horizontalScrollView}>
         <View style={styles.horizontalContainer}>
           <View style={styles.columnContainer}>
             <Text style={styles.headerText}>Course Code</Text>
@@ -136,8 +156,7 @@ const createStyles = (isDarkMode: boolean) =>
       borderRightWidth: 1,
       borderColor: '#000',
     } as TextStyle,
-    sectionContainer: {
-    } as ViewStyle,
+    sectionContainer: {} as ViewStyle,
     mainText: {
       fontSize: 14,
       fontWeight: 'bold',

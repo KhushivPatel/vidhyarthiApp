@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
-import { View, Text, useColorScheme, ScrollView, StyleSheet, ViewStyle, TextStyle, Image } from 'react-native';
+import { View, Text, useColorScheme, ScrollView, StyleSheet, ViewStyle, TextStyle, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
-import { RouteProp, useRoute } from '@react-navigation/native';
+import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 
 type RootStackParamList = {
   Viewresult: { student: any }; // Define the route parameters
@@ -9,12 +9,17 @@ type RootStackParamList = {
 
 type ViewResultRouteProp = RouteProp<RootStackParamList, 'Viewresult'>;
 
-const Viewresult = () => {
+const Viewresult: React.FC =  () => {
+  const navigation=useNavigation();
   const route = useRoute<ViewResultRouteProp>();
   const { student } = route.params;
 
   const isDarkMode = useColorScheme() === 'dark';
   const styles = createStyles(isDarkMode);
+
+const handlereassessment = () => {
+  navigation.navigate('Re_assessment', {student: student}); // Ensure student contains fild and fildname
+};
 
   return (
     <View style={styles.container}>
@@ -25,7 +30,9 @@ const Viewresult = () => {
       <ScrollView style={styles.scrollView}>
         <View style={styles.mainContent}>
           <View style={styles.textContainerRight}>
-            <Text style={[styles.textRight, styles.boldText, styles.smallText]}>Name</Text>
+            <Text style={[styles.textRight, styles.boldText, styles.smallText]}>
+              Name
+            </Text>
             <Text style={styles.textRight}>{student.Name}</Text>
           </View>
 
@@ -55,27 +62,40 @@ const Viewresult = () => {
             <Text style={styles.textLeft}>Mother Name</Text>
             <Text style={styles.textRight}>{student.MotherName}</Text>
           </View>
+          <TouchableOpacity style={styles.button} onPress={handlereassessment}>
+            <Text style={styles.buttonText}>Apply for Re-Assessment</Text>
+          </TouchableOpacity>
         </View>
 
         <View style={styles.result}>
           {/* MSU Logo and Title */}
           <View style={styles.msutitle}>
-            <Image source={require('../../assets/images/msu_logo.png')} style={styles.logo} />
+            <Image
+              source={require('../../assets/images/msu_logo.png')}
+              style={styles.logo}
+            />
             <View style={styles.msutext}>
-              <Text style={styles.text}>The Maharaja Sayajirao University, Baroda</Text>
-              <Text style={styles.subtext}>Fatehgunj, Vadodara-390002, Gujarat (India)</Text>
+              <Text style={styles.text}>
+                The Maharaja Sayajirao University, Baroda
+              </Text>
+              <Text style={styles.subtext}>
+                Fatehgunj, Vadodara-390002, Gujarat (India)
+              </Text>
             </View>
           </View>
 
           {/* Exam Date Text */}
           <View style={styles.examdatetext}>
-            <Text style={{ fontSize: 13, color: 'black', textAlign: 'center' }}>
+            <Text style={{fontSize: 13, color: 'black', textAlign: 'center'}}>
               {student.semester}
             </Text>
           </View>
 
           {/* Result Marks */}
-          <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScrollView}>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            style={styles.horizontalScrollView}>
             <View style={styles.horizontalContainer}>
               <View style={styles.columnContainer}>
                 <View style={styles.course}>
@@ -83,28 +103,28 @@ const Viewresult = () => {
                   <Text style={styles.ResultText}>Course Name</Text>
                   <Text style={styles.ResultText}>AM</Text>
                   <View>
-                  <Text style={styles.ResultText}>UA</Text>
-                  <View style={styles.subTextContainer}>
-                    <Text style={styles.subText}>Min</Text>
-                    <Text style={styles.subText}>Max</Text>
-                    <Text style={styles.subText}>Total</Text>
-                  </View>
+                    <Text style={styles.ResultText}>UA</Text>
+                    <View style={styles.subTextContainer}>
+                      <Text style={styles.subText}>Min</Text>
+                      <Text style={styles.subText}>Max</Text>
+                      <Text style={styles.subText}>Total</Text>
+                    </View>
                   </View>
                   <View>
-                  <Text style={styles.ResultText}>UA</Text>
-                  <View style={styles.subTextContainer}>
-                    <Text style={styles.subText}>Min</Text>
-                    <Text style={styles.subText}>Max</Text>
-                    <Text style={styles.subText}>Total</Text>
+                    <Text style={styles.ResultText}>UA</Text>
+                    <View style={styles.subTextContainer}>
+                      <Text style={styles.subText}>Min</Text>
+                      <Text style={styles.subText}>Max</Text>
+                      <Text style={styles.subText}>Total</Text>
+                    </View>
                   </View>
-                  </View>
-              <View>
-                  <Text style={styles.ResultText}>UA</Text>
-                  <View style={styles.subTextContainer}>
-                    <Text style={styles.subText}>Min</Text>
-                    <Text style={styles.subText}>Max</Text>
-                    <Text style={styles.subText}>Total</Text>
-                  </View>
+                  <View>
+                    <Text style={styles.ResultText}>UA</Text>
+                    <View style={styles.subTextContainer}>
+                      <Text style={styles.subText}>Min</Text>
+                      <Text style={styles.subText}>Max</Text>
+                      <Text style={styles.subText}>Total</Text>
+                    </View>
                   </View>
                   <Text style={styles.ResultText}>Sts</Text>
                   <Text style={styles.ResultText}>Rmk</Text>
@@ -229,8 +249,8 @@ const createStyles = (isDarkMode: boolean) =>
     horizontalScrollView: {
       flexGrow: 1,
     } as ViewStyle,
-    verticalcontainer:{
-      flexDirection:'column',
+    verticalcontainer: {
+      flexDirection: 'column',
     },
     horizontalContainer: {
       flexDirection: 'row',
@@ -245,27 +265,39 @@ const createStyles = (isDarkMode: boolean) =>
       fontWeight: 'bold',
       textAlign: 'center',
       paddingHorizontal: 20,
-      borderColor:'#000',
-      borderBottomWidth:1,
-      borderRightWidth:1,
+      borderColor: '#000',
+      borderBottomWidth: 1,
+      borderRightWidth: 1,
     } as TextStyle,
     course: {
-       flexDirection: 'row',
+      flexDirection: 'row',
     } as ViewStyle,
     subTextContainer: {
       flexDirection: 'row',
       justifyContent: 'space-between',
-         borderColor:'#000',
-      borderBottomWidth:1,
-          // borderRightWidth:1,
+      borderColor: '#000',
+      borderBottomWidth: 1,
+      // borderRightWidth:1,
     } as ViewStyle,
     subText: {
-    fontSize: 14,
+      fontSize: 14,
       fontWeight: 'bold',
       textAlign: 'center',
       paddingHorizontal: 20,
-           borderColor:'#000',
-          borderRightWidth:1,
+      borderColor: '#000',
+      borderRightWidth: 1,
+    } as TextStyle,
+    button: {
+      marginTop: 10,
+      paddingVertical: 15,
+      paddingHorizontal: 20,
+      backgroundColor: isDarkMode ? '#152947' : '#5287D7',
+      borderRadius: 10,
+      alignItems: 'center',
+    } as ViewStyle,
+    buttonText: {
+      color: '#fff',
+      fontSize: 14,
     } as TextStyle,
   });
 

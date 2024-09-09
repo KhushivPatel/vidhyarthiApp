@@ -1,16 +1,27 @@
-/* eslint-disable react-native/no-inline-styles */
-import { StyleSheet, Text, useColorScheme, View } from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  useColorScheme,
+  Image,
+  StyleSheet,
+} from 'react-native';
 import React from 'react';
+import {useNavigation} from '@react-navigation/native';
 
-const UgEducation = () => {
+const Exam_fee = () => {
+  const navigation=useNavigation()
   const isDarkMode = useColorScheme() === 'dark';
   const styles = createStyles(isDarkMode);
 
+  const handlefeerecipt = () =>{
+    navigation.navigate('Exam_fee_receipt')
+  }
   return (
     <View style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        <Text style={styles.headerText}>Educational Details</Text>
+        <Text style={styles.headerText}>Exam Fee Details</Text>
       </View>
 
       {/* Main Content */}
@@ -18,9 +29,9 @@ const UgEducation = () => {
         {/* Two Texts on the Right Side */}
         <View style={styles.textContainerRight}>
           <Text style={[styles.textRight, {fontWeight: 'bold', fontSize: 12}]}>
-            Degree
+            Faculty Name
           </Text>
-          <Text style={styles.textRight}>Under Graduate Degree</Text>
+          <Text style={styles.textRight}>Faculty of Fine Arts</Text>
         </View>
 
         {/* Divider */}
@@ -40,36 +51,29 @@ const UgEducation = () => {
             <Text style={styles.textLeft}>Grade</Text>
             <Text style={styles.textRight}>292 / 600</Text>
           </View>
-          <View style={styles.viewRow}>
+
+          {/* Column Layout for Grade and Percentage */}
+          <View style={styles.viewColumn}>
             <View style={styles.equalView}>
-              <Text style={styles.textLeft}>Grade</Text>
-              <Text style={styles.textRight}>292 / 600</Text>
+              <Text style={styles.textLeft}>Exam Fee Start Date</Text>
+              <Text style={styles.textLeft}>29/05/2022</Text>
             </View>
-            <View style={[styles.equalView, styles.equalViewRight]}>
-              <Text style={styles.textLeft}>Percentage</Text>
-              <Text style={styles.textRight}>48.67</Text>
+            <View style={styles.equalView}>
+              <Text style={styles.textLeft}>Exam Fee End Date</Text>
+              <Text style={styles.textLeft}>26/06/2022</Text>
             </View>
           </View>
-          <View style={styles.textRow}>
-            <Text style={styles.textLeft}>CGPA</Text>
-            <Text style={styles.textRight}>292 / 600</Text>
-          </View>
-          <View style={styles.textRow}>
-            <Text style={styles.textLeft}>Passing Class</Text>
-            <Text style={styles.textRight}>292 / 600</Text>
-          </View>
-          <View style={styles.textRow}>
-            <Text style={styles.textLeft}>Last Qualifying Exam?</Text>
-            <Text style={styles.textRight}>292 / 600</Text>
-          </View>
-          <View style={styles.textRow}>
-            <Text style={styles.textLeft}>Are you pass with first trial?</Text>
-            <Text style={styles.textRight}>292 / 600</Text>
-          </View>
-          <View style={styles.textRow}>
-            <Text style={styles.textLeft}>Passing Language</Text>
-            <Text style={styles.textRight}>292 / 600</Text>
-          </View>
+          {/* button */}
+          <TouchableOpacity
+            style={styles.button} // Pass the data here
+          >
+            <Text style={styles.buttonText}>Pay Exam Fees</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.button} // Pass the data here
+            onPress={handlefeerecipt}>
+            <Text style={styles.buttonText}>Exam Fees Receipt</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
@@ -143,20 +147,31 @@ const createStyles = isDarkMode =>
       alignItems: 'center',
       marginBottom: 10,
     },
-    equalView: {
-      flex: 1,
-      flexDirection: 'row',
+    viewColumn: {
+      flexDirection: 'row', // Set this to column
+      alignItems: 'flex-start', // Align items to the left side
+      marginBottom: 10,
       justifyContent: 'space-between',
+    },
+    equalView: {
+      width: '48%', // Ensure each item takes full width
       backgroundColor: isDarkMode ? '#869BBA' : '#B9D5FF',
       padding: 12,
       borderRadius: 10,
+      marginBottom: 10,
     },
-    equalViewRight: {
-      marginLeft: 10,
-    },
+    button: {
+      marginTop: 10,
+      paddingVertical: 15,
+      paddingHorizontal: 20,
+      backgroundColor: isDarkMode ? '#152947' : '#5287D7',
+      borderRadius: 10,
+      alignItems: 'center',
+    } as ViewStyle,
+    buttonText: {
+      color: '#fff',
+      fontSize: 16,
+    } as TextStyle,
   });
 
-
-
-
-export default UgEducation
+export default Exam_fee;
