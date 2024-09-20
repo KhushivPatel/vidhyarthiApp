@@ -26,7 +26,9 @@ const RequestStatus: React.FC = () => {
       <ScrollView style={styles.scrollView}>
         <View style={styles.mainContent}>
           <View style={styles.textContainerRight}>
-            <Text style={[styles.textRight, styles.boldText, styles.smallText]}>Request Name</Text>
+            <Text style={[styles.textRight, styles.boldText, styles.smallText]}>
+              Request Name
+            </Text>
             <Text style={styles.textRight}>Father/ Mother/ Spouse Name</Text>
           </View>
 
@@ -43,7 +45,9 @@ const RequestStatus: React.FC = () => {
           </View>
           <View style={styles.textRow}>
             <Text style={styles.textLeft}>New Record</Text>
-            <Text style={styles.textRight}>8022050054_RequestedFile_404.php</Text>
+            <Text style={styles.textRight}>
+              8022050054_RequestedFile_404.php
+            </Text>
           </View>
           <View style={styles.textRow}>
             <Text style={styles.textLeft}>Requested On</Text>
@@ -55,6 +59,9 @@ const RequestStatus: React.FC = () => {
           </View>
         </View>
       </ScrollView>
+      <Text style={styles.logotext}>
+        The Maharaja Sayajirao University - Baroda
+      </Text>
     </View>
   );
 };
@@ -102,7 +109,7 @@ const createStyles = (isDarkMode: boolean) =>
       fontSize: 14,
       color: isDarkMode ? '#fff' : '#000',
       marginBottom: 4,
-      flex:2,
+      flex: 2,
       textAlign: 'right',
     } as TextStyle,
     divider: {
@@ -121,7 +128,7 @@ const createStyles = (isDarkMode: boolean) =>
     } as ViewStyle,
     textLeft: {
       fontSize: 16,
-      flex:2,
+      flex: 2,
       color: isDarkMode ? '#fff' : '#000',
       fontWeight: 'bold',
     } as TextStyle,
@@ -134,6 +141,13 @@ const createStyles = (isDarkMode: boolean) =>
     smallText: {
       fontSize: 12,
     } as TextStyle,
+    logotext: {
+      justifyContent: 'center',
+      textAlign: 'center',
+      alignItems: 'center',
+      paddingTop: 20,
+      paddingBottom: 20,
+    },
   });
 
 export default RequestStatus;

@@ -1,5 +1,15 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, Image, useColorScheme, ScrollView } from 'react-native';
+import React, {useState} from 'react';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  ViewStyle,
+  TextStyle,
+  Image,
+  useColorScheme,
+  ScrollView,
+} from 'react-native';
 import NotiData from '../TempData/NotiData'; // Import the data
 
 // Define the type for a notification item (matches NotiData)
@@ -7,11 +17,11 @@ interface Notification {
   id: number;
   title: string;
   description: string;
-    date:string;
+  date: string;
 }
 
 const NotificationScreen: React.FC = () => {
-    const isDarkMode = useColorScheme() === 'dark';
+  const isDarkMode = useColorScheme() === 'dark';
   const styles = createStyles(isDarkMode);
 
   // Use NotiData to set the initial state of notifications
@@ -21,7 +31,7 @@ const NotificationScreen: React.FC = () => {
       title: item.title,
       description: item.subtitle,
       date: item.date,
-    }))
+    })),
   );
 
   // Function to mark all notifications as read
@@ -35,55 +45,65 @@ const NotificationScreen: React.FC = () => {
       <View style={styles.header}>
         <Text style={styles.headerText}>Notification</Text>
       </View>
-<ScrollView style={styles.scroll}>
-
-      <View style={styles.notificationList}>
-         <View style={styles.textRow}>
-                <Image
-                  source={require('../../assets/images/msunoti.png')}
-                  style={styles.notificationImage}
-                />
-                <View style={styles.notificationTextContainer}>
-                  <Text style={styles.notificationTitle}>Orientation for academic year 2024 on 24/12/2023 </Text>
-                  <Text style={styles.notificationDescription}>Orientation for academic year 2024 on 24/12/2023 Orientation for academic year 2024 on 24/12/2023  Orientation for academic year 2024 on 24/12/2023 Orientation for </Text>
-                </View>
-              </View>
-        {/* If there are notifications, display them */}
-        {notifications.length > 0 ? (
-          notifications.map((notification) => (
-            <View key={notification.id} style={styles.notificationContainer}>
-              <View style={styles.textRow}>
-      
-                <View style={styles.notificationTextContainer}>
-                  <View style={styles.padding}>
-
-                  <Text style={styles.notificationTitle}>{notification.title}</Text>
-                  <Text style={styles.notificationDescription}>{notification.description}</Text>
-                  </View>
-                <View style={styles.datecontainer}>
-                  <Text style={styles.datetext}>
-                   {notification.date}
-                  </Text>
-                </View>
-                </View>
-              </View>
+      <ScrollView style={styles.scroll}>
+        <View style={styles.notificationList}>
+          <View style={styles.textRow}>
+            <Image
+              source={require('../../assets/images/msunoti.png')}
+              style={styles.notificationImage}
+            />
+            <View style={styles.notificationTextContainer}>
+              <Text style={styles.notificationTitle}>
+                Orientation for academic year 2024 on 24/12/2023{' '}
+              </Text>
+              <Text style={styles.notificationDescription}>
+                Orientation for academic year 2024 on 24/12/2023 Orientation for
+                academic year 2024 on 24/12/2023 Orientation for academic year
+                2024 on 24/12/2023 Orientation for{' '}
+              </Text>
             </View>
-          ))
-        ) : (
-          // If no notifications, display a message
-          <Text style={styles.noNotificationsText}>No notifications available</Text>
-        )}
+          </View>
+          {/* If there are notifications, display them */}
+          {notifications.length > 0 ? (
+            notifications.map(notification => (
+              <View key={notification.id} style={styles.notificationContainer}>
+                <View style={styles.textRow}>
+                  <View style={styles.notificationTextContainer}>
+                    <View style={styles.padding}>
+                      <Text style={styles.notificationTitle}>
+                        {notification.title}
+                      </Text>
+                      <Text style={styles.notificationDescription}>
+                        {notification.description}
+                      </Text>
+                    </View>
+                    <View style={styles.datecontainer}>
+                      <Text style={styles.datetext}>{notification.date}</Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            ))
+          ) : (
+            // If no notifications, display a message
+            <Text style={styles.noNotificationsText}>
+              No notifications available
+            </Text>
+          )}
 
-        <View style={styles.divider} />
+          <View style={styles.divider} />
 
-        {/* Mark all as read button */}
-        {notifications.length > 0 && (
-          <TouchableOpacity onPress={markAsRead}>
-            <Text style={styles.markAsRead}>Mark all as read</Text>
-          </TouchableOpacity>
-        )}
-      </View>
-</ScrollView>
+          {/* Mark all as read button */}
+          {notifications.length > 0 && (
+            <TouchableOpacity onPress={markAsRead}>
+              <Text style={styles.markAsRead}>Mark all as read</Text>
+            </TouchableOpacity>
+          )}
+        </View>
+      </ScrollView>
+      <Text style={styles.logotext}>
+        The Maharaja Sayajirao University - Baroda
+      </Text>
     </View>
   );
 };
@@ -172,8 +192,15 @@ const createStyles = (isDarkMode: boolean) =>
       color: '#002E74',
       fontWeight: 'bold',
     },
-    scroll:{
-      flexGrow:1,
+    scroll: {
+      flexGrow: 1,
+    },
+    logotext: {
+      justifyContent: 'center',
+      textAlign: 'center',
+      alignItems: 'center',
+      paddingTop: 10,
+      paddingBottom: 10,
     },
   });
 

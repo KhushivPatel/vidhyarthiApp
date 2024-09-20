@@ -5,37 +5,65 @@ import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView, useColorSc
 const ProfileScreen: React.FC = () => {
     const isDarkMode = useColorScheme() === 'dark';
   return (
-    <View style={isDarkMode ? styles.containerDark  : styles.container}>
-      <View style={isDarkMode ? styles.headerDark  : styles.header}>
-        <Text style={isDarkMode ? styles.headerTextDark  : styles.headerText}>Profile</Text>
-        <View style={isDarkMode ? styles.headerIconsDark  : styles.headerIcons}>
-          <TouchableOpacity style={isDarkMode ? styles.iconButtonDark  : styles.iconButton}>
-            <Image source={require('../../assets/icons/menu.png')} style={isDarkMode ? styles.notificationDark  : styles.notification} />
+    <View style={isDarkMode ? styles.containerDark : styles.container}>
+      <View style={isDarkMode ? styles.headerDark : styles.header}>
+        <Text style={isDarkMode ? styles.headerTextDark : styles.headerText}>
+          Profile
+        </Text>
+        <View style={isDarkMode ? styles.headerIconsDark : styles.headerIcons}>
+          <TouchableOpacity
+            style={isDarkMode ? styles.iconButtonDark : styles.iconButton}>
+            <Image
+              source={require('../../assets/icons/menu.png')}
+              style={isDarkMode ? styles.notificationDark : styles.notification}
+            />
           </TouchableOpacity>
         </View>
       </View>
 
-      <View style={isDarkMode ? styles.mainContainerDark  : styles.mainContainer}>
-        <View style={isDarkMode ? styles.profileSectionDark  : styles.profileSection}>
+      <View
+        style={isDarkMode ? styles.mainContainerDark : styles.mainContainer}>
+        <View
+          style={
+            isDarkMode ? styles.profileSectionDark : styles.profileSection
+          }>
           <Image
             source={require('../../assets/images/login_img.png')}
-            style={isDarkMode ? styles.profileImageDark  : styles.profileImage}
+            style={isDarkMode ? styles.profileImageDark : styles.profileImage}
           />
-          <View style={isDarkMode ? styles.infoContainerDark  : styles.infoContainer}>
-            <Text style={isDarkMode ? styles.nameDark  : styles.name}>John Doe</Text>
-            <Text style={isDarkMode ? styles.emailDark  : styles.email}>johndoe@example.com</Text>
-            <View style={isDarkMode ? styles.dividerDark  : styles.divider} />
-            <View style={isDarkMode ? styles.boxContainerDark  : styles.boxContainer}>
-              <View style={isDarkMode ? styles.boxDark  : styles.box}>
-                <Text style={isDarkMode ? styles.boxTextDark  : styles.boxText}>PRN NO:</Text>
-                <View style={isDarkMode ? styles.boxansDark  : styles.boxans}>
-                  <Text style={isDarkMode ? styles.ansDark  : styles.ans}>8021025147</Text>
+          <View
+            style={
+              isDarkMode ? styles.infoContainerDark : styles.infoContainer
+            }>
+            <Text style={isDarkMode ? styles.nameDark : styles.name}>
+              John Doe
+            </Text>
+            <Text style={isDarkMode ? styles.emailDark : styles.email}>
+              johndoe@example.com
+            </Text>
+            <View style={isDarkMode ? styles.dividerDark : styles.divider} />
+            <View
+              style={
+                isDarkMode ? styles.boxContainerDark : styles.boxContainer
+              }>
+              <View style={isDarkMode ? styles.boxDark : styles.box}>
+                <Text style={isDarkMode ? styles.boxTextDark : styles.boxText}>
+                  PRN NO:
+                </Text>
+                <View style={isDarkMode ? styles.boxansDark : styles.boxans}>
+                  <Text style={isDarkMode ? styles.ansDark : styles.ans}>
+                    8021025147
+                  </Text>
                 </View>
               </View>
-              <View style={isDarkMode ? styles.boxDark  : styles.box}>
-                <Text style={isDarkMode ? styles.boxTextDark  : styles.boxText}>Ph No:</Text>
-                <View style={isDarkMode ? styles.boxansDark  : styles.boxans}>
-                  <Text style={isDarkMode ? styles.ansDark  : styles.ans}>9999999999</Text>
+              <View style={isDarkMode ? styles.boxDark : styles.box}>
+                <Text style={isDarkMode ? styles.boxTextDark : styles.boxText}>
+                  Ph No:
+                </Text>
+                <View style={isDarkMode ? styles.boxansDark : styles.boxans}>
+                  <Text style={isDarkMode ? styles.ansDark : styles.ans}>
+                    9999999999
+                  </Text>
                 </View>
               </View>
             </View>
@@ -43,24 +71,47 @@ const ProfileScreen: React.FC = () => {
         </View>
       </View>
 
-      <ScrollView style={isDarkMode ? styles.studentcomponentDark  : styles.studentcomponent} contentContainerStyle={styles.scrollViewContent}>
-        <View style={isDarkMode ? styles.studentDetailmainDark  : styles.studentDetailmain}>
-          <View style={isDarkMode ? styles.studentmenuDark  : styles.studentmenu}>
+      <ScrollView
+        style={
+          isDarkMode ? styles.studentcomponentDark : styles.studentcomponent
+        }
+        contentContainerStyle={styles.scrollViewContent}>
+        <View
+          style={
+            isDarkMode ? styles.studentDetailmainDark : styles.studentDetailmain
+          }>
+          <View
+            style={isDarkMode ? styles.studentmenuDark : styles.studentmenu}>
             <TouchableOpacity>
-              <Image source={require('../../assets/images/profile1.png')} style={isDarkMode ? styles.menuimgDark  : styles.menuimg} />
+              <Image
+                source={require('../../assets/images/profile1.png')}
+                style={isDarkMode ? styles.menuimgDark : styles.menuimg}
+              />
             </TouchableOpacity>
             <TouchableOpacity>
-              <Image source={require('../../assets/images/profil2.png')} style={isDarkMode ? styles.menuimgDark  : styles.menuimg} />
+              <Image
+                source={require('../../assets/images/profil2.png')}
+                style={isDarkMode ? styles.menuimgDark : styles.menuimg}
+              />
             </TouchableOpacity>
             <TouchableOpacity>
-              <Image source={require('../../assets/images/profile3.png')} style={isDarkMode ? styles.menuimgDark  : styles.menuimg} />
+              <Image
+                source={require('../../assets/images/profile3.png')}
+                style={isDarkMode ? styles.menuimgDark : styles.menuimg}
+              />
             </TouchableOpacity>
             <TouchableOpacity>
-              <Image source={require('../../assets/images/profile4.png')} style={isDarkMode ? styles.menuimgDark  : styles.menuimg} />
+              <Image
+                source={require('../../assets/images/profile4.png')}
+                style={isDarkMode ? styles.menuimgDark : styles.menuimg}
+              />
             </TouchableOpacity>
           </View>
         </View>
       </ScrollView>
+      <Text style={isDarkMode ? styles.logotextDark : styles.logotext}>
+        The Maharaja Sayajirao University - Baroda
+      </Text>
     </View>
   );
 };
@@ -160,7 +211,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   scrollViewContent: {
-    flexGrow: 1,  // Ensures the content container takes up all available space
+    flexGrow: 1, // Ensures the content container takes up all available space
   },
   studentDetailmain: {
     backgroundColor: '#DCEAFF',
@@ -234,7 +285,7 @@ const styles = StyleSheet.create({
   nameDark: {
     fontSize: 15,
     fontWeight: 'bold',
-    color:'#fff',
+    color: '#fff',
   },
   emailDark: {
     fontSize: 12,
@@ -272,13 +323,13 @@ const styles = StyleSheet.create({
     fontSize: 12,
     textAlign: 'center',
     lineHeight: 30, // Center text vertically
-    color:'#fff',
+    color: '#fff',
   },
   studentcomponentDark: {
     paddingHorizontal: 10,
   },
   scrollViewContentDark: {
-    flexGrow: 1,  // Ensures the content container takes up all available space
+    flexGrow: 1, // Ensures the content container takes up all available space
   },
   studentDetailmainDark: {
     backgroundColor: '#565E69',
@@ -298,6 +349,13 @@ const styles = StyleSheet.create({
   menuimgDark: {
     height: 20,
     width: 20,
+  },
+  logotext: {
+    justifyContent: 'center',
+    textAlign: 'center',
+    alignItems: 'center',
+    paddingTop: 10,
+    paddingBottom: 10,
   },
 });
 

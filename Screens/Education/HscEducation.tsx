@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import { StyleSheet, Text, useColorScheme, View } from 'react-native'
+import { ScrollView, StyleSheet, Text, useColorScheme, View } from 'react-native'
 import React from 'react'
 
 const HscEducation = () => {
@@ -14,64 +14,72 @@ const HscEducation = () => {
       </View>
 
       {/* Main Content */}
-      <View style={styles.mainContent}>
-        {/* Two Texts on the Right Side */}
-        <View style={styles.textContainerRight}>
-          <Text style={[styles.textRight, {fontWeight: 'bold', fontSize: 12}]}>
-            Degree
-          </Text>
-          <Text style={styles.textRight}>Hsc / 12th</Text>
-        </View>
+      <ScrollView>
+        <View style={styles.mainContent}>
+          {/* Two Texts on the Right Side */}
+          <View style={styles.textContainerRight}>
+            <Text
+              style={[styles.textRight, {fontWeight: 'bold', fontSize: 12}]}>
+              Degree
+            </Text>
+            <Text style={styles.textRight}>Hsc / 12th</Text>
+          </View>
 
-        {/* Divider */}
-        <View style={styles.divider} />
+          {/* Divider */}
+          <View style={styles.divider} />
 
-        {/* Texts on Left and Right Side */}
-        <View style={styles.detailContainer}>
-          <View style={styles.textRow}>
-            <Text style={styles.textLeft}>Specialization</Text>
-            <Text style={styles.textRight}>General</Text>
-          </View>
-          <View style={styles.textRow}>
-            <Text style={styles.textLeft}>Board / University</Text>
-            <Text style={styles.textRight}>General</Text>
-          </View>
-          <View style={styles.textRow}>
-            <Text style={styles.textLeft}>Grade</Text>
-            <Text style={styles.textRight}>292 / 600</Text>
-          </View>
-          <View style={styles.viewRow}>
-            <View style={styles.equalView}>
+          {/* Texts on Left and Right Side */}
+          <View style={styles.detailContainer}>
+            <View style={styles.textRow}>
+              <Text style={styles.textLeft}>Specialization</Text>
+              <Text style={styles.textRight}>General</Text>
+            </View>
+            <View style={styles.textRow}>
+              <Text style={styles.textLeft}>Board / University</Text>
+              <Text style={styles.textRight}>General</Text>
+            </View>
+            <View style={styles.textRow}>
               <Text style={styles.textLeft}>Grade</Text>
               <Text style={styles.textRight}>292 / 600</Text>
             </View>
-            <View style={[styles.equalView, styles.equalViewRight]}>
-              <Text style={styles.textLeft}>Percentage</Text>
-              <Text style={styles.textRight}>48.67</Text>
+            <View style={styles.viewRow}>
+              <View style={styles.equalView}>
+                <Text style={styles.textLeft}>Grade</Text>
+                <Text style={styles.textRight}>292 / 600</Text>
+              </View>
+              <View style={[styles.equalView, styles.equalViewRight]}>
+                <Text style={styles.textLeft}>Percentage</Text>
+                <Text style={styles.textRight}>48.67</Text>
+              </View>
+            </View>
+            <View style={styles.textRow}>
+              <Text style={styles.textLeft}>CGPA</Text>
+              <Text style={styles.textRight}>292 / 600</Text>
+            </View>
+            <View style={styles.textRow}>
+              <Text style={styles.textLeft}>Passing Class</Text>
+              <Text style={styles.textRight}>292 / 600</Text>
+            </View>
+            <View style={styles.textRow}>
+              <Text style={styles.textLeft}>Last Qualifying Exam?</Text>
+              <Text style={styles.textRight}>292 / 600</Text>
+            </View>
+            <View style={styles.textRow}>
+              <Text style={styles.textLeft}>
+                Are you pass with first trial?
+              </Text>
+              <Text style={styles.textRight}>292 / 600</Text>
+            </View>
+            <View style={styles.textRow}>
+              <Text style={styles.textLeft}>Passing Language</Text>
+              <Text style={styles.textRight}>292 / 600</Text>
             </View>
           </View>
-          <View style={styles.textRow}>
-            <Text style={styles.textLeft}>CGPA</Text>
-            <Text style={styles.textRight}>292 / 600</Text>
-          </View>
-          <View style={styles.textRow}>
-            <Text style={styles.textLeft}>Passing Class</Text>
-            <Text style={styles.textRight}>292 / 600</Text>
-          </View>
-          <View style={styles.textRow}>
-            <Text style={styles.textLeft}>Last Qualifying Exam?</Text>
-            <Text style={styles.textRight}>292 / 600</Text>
-          </View>
-          <View style={styles.textRow}>
-            <Text style={styles.textLeft}>Are you pass with first trial?</Text>
-            <Text style={styles.textRight}>292 / 600</Text>
-          </View>
-          <View style={styles.textRow}>
-            <Text style={styles.textLeft}>Passing Language</Text>
-            <Text style={styles.textRight}>292 / 600</Text>
-          </View>
         </View>
-      </View>
+      </ScrollView>
+      <Text style={styles.logotext}>
+        The Maharaja Sayajirao University - Baroda
+      </Text>
     </View>
   );
 };
@@ -154,8 +162,15 @@ const createStyles = isDarkMode =>
     equalViewRight: {
       marginLeft: 10,
     },
+    logotext: {
+      justifyContent: 'center',
+      textAlign: 'center',
+      alignItems: 'center',
+      paddingTop: 10,
+      paddingBottom: 10,
+    },
   });
 
 
 
-export default HscEducation
+export default HscEducation;

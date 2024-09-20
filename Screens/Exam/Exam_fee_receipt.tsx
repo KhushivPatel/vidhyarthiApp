@@ -1,5 +1,6 @@
-import { View, Text, useColorScheme, TouchableOpacity, StyleSheet, Image, TextStyle, ViewStyle } from 'react-native'
-import React from 'react'
+/* eslint-disable react-native/no-inline-styles */
+import { View, Text, useColorScheme, TouchableOpacity, StyleSheet, Image, TextStyle, ViewStyle } from 'react-native';
+import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 
 const Exam_fee_recipt = () => {
@@ -19,9 +20,9 @@ const Exam_fee_recipt = () => {
       <View style={styles.msucontainer}>
         <Image
           source={require('../../assets/images/msu_logo.png')}
-          style={styles.logo}></Image>
+          style={styles.logo} />
         <Text style={styles.logotext}>
-          The Maharaja Sayajirao University Student Exam Fee Online Payment
+          The Maharaja Sayajirao University        Student Exam Fee Online Payment
           Receipt
         </Text>
         <Text style={styles.logotext}>Receipt No: 8021080267004070159005</Text>
@@ -178,10 +179,15 @@ const createStyles = isDarkMode =>
     },
     logotext: {
       fontSize: 16,
-      padding:10,
+      padding: 10,
       color: isDarkMode ? '#fff' : '#000',
       fontWeight: 'bold',
+      alignItems: 'center',
+      justifyContent: 'center',
+      textAlign:'center',
+      marginRight:25,
+      marginLeft:25,
     },
   });
 
-export default Exam_fee_recipt
+export default Exam_fee_recipt;

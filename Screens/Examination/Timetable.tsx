@@ -1,19 +1,35 @@
-import { View, Text, useColorScheme, StyleSheet, ViewStyle, TextStyle, TouchableOpacity, ScrollView } from 'react-native'
-import React from 'react'
+import {
+  View,
+  Text,
+  useColorScheme,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView,
+  TextStyle,
+  ViewStyle,
+} from 'react-native';
+import React from 'react';
 import {useNavigation} from '@react-navigation/native';
+import {sampleTimeTableData} from '../TempData/TimeTableData'; // Adjust the path to your data file
 
 const Timetable = () => {
-   const navigation = useNavigation();
-    const isDarkMode = useColorScheme() === 'dark';
-    const styles = createStyles(isDarkMode);
-    const handleViewtimetable =()=>{
-      navigation.navigate('View_tt');
-    };
+  const navigation = useNavigation();
+  const isDarkMode = useColorScheme() === 'dark';
+  const styles = createStyles(isDarkMode);
+
+  const handleViewtimetable = (id: number) => {
+    const timetableData = sampleTimeTableData.find(data => data.id === id);
+    if (timetableData) {
+      navigation.navigate('View_tt', {timetableData});
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerText}>Examination Details</Text>
       </View>
+
       <ScrollView style={styles.scrollView}>
         <View style={styles.mainContent}>
           <View style={styles.textContainerRight}>
@@ -22,42 +38,40 @@ const Timetable = () => {
             </Text>
             <Text style={styles.textRight}>Faculty of Fine Arts</Text>
           </View>
-
-          <View style={styles.detailContainer}>
-            <View style={styles.textRow}>
-              <Text style={styles.textLeft}>Semester</Text>
-              <Text style={styles.textRight}>First Semester of</Text>
+          {sampleTimeTableData.map(timetable => (
+            <View key={timetable.id} style={styles.detailContainer}>
+              <View style={styles.textRow}>
+                <Text style={styles.textLeft}>Semester</Text>
+                <Text style={styles.textRight}>{timetable.semester}</Text>
+              </View>
+              <View style={styles.textRow}>
+                <Text style={styles.textLeft}>Seat Number</Text>
+                <Text style={styles.textRight}>{timetable.seatNumber}</Text>
+              </View>
+              <View style={styles.textRow}>
+                <Text style={styles.textLeft}>Exam Event</Text>
+                <Text style={styles.textRight}>{timetable.examEvent}</Text>
+              </View>
+              <View style={styles.textRow}>
+                <Text style={styles.textLeft}>Appearance Type</Text>
+                <Text style={styles.textRight}>{timetable.appearanceType}</Text>
+              </View>
+              <View style={styles.textRow}>
+                <Text style={styles.textLeft}>Form No</Text>
+                <Text style={styles.textRight}>{timetable.formNumber}</Text>
+              </View>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => handleViewtimetable(timetable.id)}>
+                <Text style={styles.buttonText}>View Exam Time Table</Text>
+              </TouchableOpacity>
             </View>
-            <View style={styles.textRow}>
-              <Text style={styles.textLeft}>Seat Number</Text>
-              <Text style={styles.textRight}>128909</Text>
-            </View>
-            <View style={styles.textRow}>
-              <Text style={styles.textLeft}>Exam Event</Text>
-              <Text style={styles.textRight}>November-2022</Text>
-            </View>
-            <View style={styles.textRow}>
-              <Text style={styles.textLeft}>Appearance Type</Text>
-              <Text style={styles.textRight}>Fresher</Text>
-            </View>
-            <View style={styles.textRow}>
-              <Text style={styles.textLeft}>Form No</Text>
-              <Text style={styles.textRight}>100058827</Text>
-            </View>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={handleViewtimetable} // Pass the data here
-            >
-              <Text style={styles.buttonText}>View Exam Time Table</Text>
-            </TouchableOpacity>
-          </View>
+          ))}
         </View>
       </ScrollView>
     </View>
   );
-}
-
-
+};
 
 const createStyles = (isDarkMode: boolean) =>
   StyleSheet.create({
@@ -92,13 +106,14 @@ const createStyles = (isDarkMode: boolean) =>
       alignItems: 'flex-start',
     } as ViewStyle,
     textRight: {
+      flex: 2,
       fontSize: 14,
       color: isDarkMode ? '#fff' : '#000',
       marginBottom: 4,
       textAlign: 'right',
     } as TextStyle,
     textRow: {
-      flex: 2,
+      // flex: 1,
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
@@ -111,7 +126,7 @@ const createStyles = (isDarkMode: boolean) =>
       fontSize: 16,
       color: isDarkMode ? '#fff' : '#000',
       fontWeight: 'bold',
-      flex: 0.5,
+      flex: 2,
     } as TextStyle,
     // textRight: {
     //   fontSize: 16,
@@ -128,6 +143,7 @@ const createStyles = (isDarkMode: boolean) =>
       backgroundColor: isDarkMode ? '#869BBA' : '#B9D5FF',
       borderBottomLeftRadius: 10,
       borderBottomRightRadius: 10,
+      marginBottom:10,
     } as ViewStyle,
     boldText: {
       fontWeight: 'bold',
@@ -148,4 +164,4 @@ const createStyles = (isDarkMode: boolean) =>
       fontSize: 16,
     } as TextStyle,
   });
-export default Timetable
+export default Timetable;

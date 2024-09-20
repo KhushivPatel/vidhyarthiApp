@@ -10,13 +10,13 @@ import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 
 const Exam_fee = () => {
-  const navigation=useNavigation()
+  const navigation = useNavigation();
   const isDarkMode = useColorScheme() === 'dark';
   const styles = createStyles(isDarkMode);
 
   const handlefeerecipt = () =>{
-    navigation.navigate('Exam_fee_receipt')
-  }
+    navigation.navigate('Exam_fee_receipt');
+  };
   return (
     <View style={styles.container}>
       {/* Header */}

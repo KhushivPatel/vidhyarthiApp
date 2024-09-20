@@ -96,7 +96,6 @@ const handlereassessment = () => {
             horizontal
             showsHorizontalScrollIndicator={false}
             style={styles.horizontalScrollView}>
-            <View style={styles.horizontalContainer}>
               <View style={styles.columnContainer}>
                 <View style={styles.course}>
                   <Text style={styles.ResultText}>Course Code</Text>
@@ -130,7 +129,7 @@ const handlereassessment = () => {
                   <Text style={styles.ResultText}>Rmk</Text>
                 </View>
               </View>
-            </View>
+        
           </ScrollView>
         </View>
       </ScrollView>
@@ -249,28 +248,27 @@ const createStyles = (isDarkMode: boolean) =>
     horizontalScrollView: {
       flexGrow: 1,
     } as ViewStyle,
-    verticalcontainer: {
-      flexDirection: 'column',
-    },
-    horizontalContainer: {
-      flexDirection: 'row',
-    } as ViewStyle,
+    verticalcontainer: {},
     columnContainer: {
+      flex: 1,
       flexDirection: 'row',
-      flexWrap: 'nowrap',
-      // marginBottom:10,
+      flexWrap: 'wrap',
+      marginRight: 10,
+      marginLeft: 10,
     } as ViewStyle,
     ResultText: {
       fontSize: 14,
       fontWeight: 'bold',
       textAlign: 'center',
-      paddingHorizontal: 20,
       borderColor: '#000',
       borderBottomWidth: 1,
       borderRightWidth: 1,
     } as TextStyle,
     course: {
+      fontSize: 12,
+      color: '#000',
       flexDirection: 'row',
+      fontWeight: 'bold',
     } as ViewStyle,
     subTextContainer: {
       flexDirection: 'row',
@@ -283,7 +281,6 @@ const createStyles = (isDarkMode: boolean) =>
       fontSize: 14,
       fontWeight: 'bold',
       textAlign: 'center',
-      paddingHorizontal: 20,
       borderColor: '#000',
       borderRightWidth: 1,
     } as TextStyle,
